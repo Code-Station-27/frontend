@@ -4,6 +4,7 @@ export default {
     colors: {
         //example
         background: '#333',
-        font: '#FFF'
+        font: '#CCC',
+        title: '#FFF'
     }
 }
