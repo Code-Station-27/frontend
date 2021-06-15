@@ -5,9 +5,17 @@ declare module 'styled-components' {
         title: string,
 
         colors: {
+            primary: string,
             background: string,
-            font: string
-            title: string
+            font: string,
+            title: string,
+            black: string,
+            shape: string,
+
+            red_light: string,
+            green_light: string,
+            red: string,
+            green: string
         }
     }
 }

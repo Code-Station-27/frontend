@@ -1,13 +1,13 @@
 export default {
-    title: 'dark',
+    title: 'light',
 
     colors: {
-        primary: '#5979E0',
-        background: '#202020',
-        font: '#EDEDE8',
-        title: '#FFF',
+        primary: '#33CCCC',
+        background: '#F0F0F1',
+        font: '#232323',
+        title: '#202020',
         black: '#202020',
-        shape: '#242325',
+        shape: '#ECECEC',
 
         red_light: '#F3BCBD',
         green_light: '#C4E6CA',
