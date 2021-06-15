@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import { FiUser, FiLock } from 'react-icons/fi'
+import { FiUser, FiLock, FiMail } from 'react-icons/fi'
 
 import * as S from './styles'
 
@@ -18,7 +18,7 @@ export const SignIn = () => {
                     <Input 
                         name="email" 
                         placeholder="Digite seu email"
-                        icon={FiUser}
+                        icon={FiMail}
                     />
                     <Input 
                         name="password" 
