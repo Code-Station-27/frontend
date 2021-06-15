@@ -11,7 +11,7 @@ export default createGlobalStyle `
         background: ${props => props.theme.colors.background};
         color: ${props => props.theme.colors.title};
         -webkit-font-smoothing: antialiased;
-        font-family: "Roboto Slab", serif;
+        font-family: "Nunito", serif;
         font-size: 16px;
     }
     h1, h2, h3, h4, h5, h6, strong {
