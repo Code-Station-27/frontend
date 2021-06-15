@@ -11,11 +11,13 @@ declare module 'styled-components' {
             title: string,
             black: string,
             shape: string,
+            inputs: string
 
             red_light: string,
             green_light: string,
             red: string,
             green: string
+            button_green: string
         }
     }
 }
