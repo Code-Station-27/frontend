@@ -8,7 +8,7 @@ import * as S from './styles'
 export const Home = () => {
     return(
         <S.Container>
-            {/* <Header /> */}
+            <Header />
             <div>
                 <img src="/logo.svg" alt="PerFit" />
                 <h1>Connect you to health</h1>
