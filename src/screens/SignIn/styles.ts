@@ -1,11 +1,18 @@
 import styled from 'styled-components'
 
-export const ButtonsContainer = styled.div`
+export const Container = styled.div`
+    
+`
+
+export const Form = styled.form`
     width: 100%;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    margin-top: 48px;
+    max-width: 360px;
+    margin-top: 64px;
+    margin-bottom: 32px;
+
+    div{
+        margin-bottom: 24px;
+    }
 `
 
 export const StyledLink = styled.a`

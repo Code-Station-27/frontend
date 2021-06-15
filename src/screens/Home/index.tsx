@@ -2,14 +2,14 @@ import Link from 'next/link'
 
 import { Button } from '../../components/Button'
 import { LandingBackground } from '../../components/LandingBackground'
+import { LogoAndSlogan } from '../../components/LogoAndSlogan'
 
 import * as S from './styles'
 
 export const Home = () => {
     return(
         <LandingBackground>
-            <S.Logo src="/logo.svg" alt="PerFit" />
-            <S.Title>Connect you to health</S.Title>
+            <LogoAndSlogan/>
             <S.ButtonsContainer>
                 <Button 
                     text="Buscar trainer" 
