@@ -28,14 +28,7 @@ export default createGlobalStyle `
     textarea {
         font-family: "Roboto Slab", serif;
     }
-    a{
-        text-decoration: none;
-    }
-
-    li {
-        list-style-type: none;
-    }
-    /* ::-webkit-scrollbar{
+    ::-webkit-scrollbar{
         width: 12px;
     }
     ::-webkit-scrollbar-track{
@@ -44,5 +37,11 @@ export default createGlobalStyle `
     ::-webkit-scrollbar-thumb{
         background: ${props => props.theme.colors.shape};
         border-radius: 6px;
-    } */
+    }
+
+    @media (max-width: 600px){
+        ::-webkit-scrollbar{
+            display: none;
+        }
+    }
 `

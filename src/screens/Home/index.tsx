@@ -1,33 +1,34 @@
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 import { Button } from '../../components/Button'
-import { Header } from '../../components/Header'
+import { LandingBackground } from '../../components/LandingBackground'
+import { LogoAndSlogan } from '../../components/LogoAndSlogan'
 
 import * as S from './styles'
 
 export const Home = () => {
+    const { push } = useRouter()
+
     return(
-        <S.Container>
-            <Header />
-            <div>
-                <img src="/logo.svg" alt="PerFit" />
-                <h1>Connect you to health</h1>
-                <S.ButtonsContainer>
-                    <Button 
-                        text="Buscar personal" 
-                        color="#202020"
-                        textColor="#FFF"
-                    />
-                    <Button 
-                        text="Sou personal" 
-                        color="#202020"
-                        textColor="#FFF"
-                    />
-                </S.ButtonsContainer>
-                <a>
-                    <Link href="signIn">Já possui uma conta? Faça login</Link>
-                </a>
-            </div>
-        </S.Container>
+        <LandingBackground>
+            <S.Container>
+            <LogoAndSlogan/>
+            <S.ButtonsContainer>
+                <Button 
+                    text="Entrar" 
+                    color="#202020"
+                    textColor="#FFF"
+                    onClick={()=>push('/signIn')}
+                />
+                <Button 
+                    text="Cadastrar" 
+                    color="#202020"
+                    textColor="#FFF"
+                    onClick={()=>push('/signUp')}
+                />
+            </S.ButtonsContainer>
+            </S.Container>
+        </LandingBackground>
     )
 }
