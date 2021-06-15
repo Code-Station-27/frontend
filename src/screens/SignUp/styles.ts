@@ -36,3 +36,13 @@ export const StyledLink = styled.a`
         filter: brightness(0.8);
     }
 `
+
+export const AddressTextContainer = styled.div`
+    margin-top: 32px;
+    margin-bottom: 24px;
+    max-width: 100%;
+    p{
+        margin-top: 8px;
+        color: ${props => props.theme.colors.font};
+    }
+`
