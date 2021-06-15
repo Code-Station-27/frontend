@@ -7,7 +7,7 @@ export default {
         font: '#232323',
         title: '#202020',
         black: '#202020',
-        shape: '#ECECEC',
+        shape: '#DCDCDC',
         inputs: '#FFF',
 
         red_light: '#F3BCBD',
