@@ -23,7 +23,8 @@
     "@types/styled-components": "^5.1.10",
     "babel-plugin-styled-components": "^1.12.0",
     "husky": "^6.0.0",
-    "typescript": "^4.3.2"
+    "typescript": "^4.3.2",
+    "url-loader": "^4.1.1"
   },
   "license": "MIT"
 }
