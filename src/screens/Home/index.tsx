@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 
 import { Button } from '../../components/Button'
 import { LandingBackground } from '../../components/LandingBackground'
@@ -7,24 +8,27 @@ import { LogoAndSlogan } from '../../components/LogoAndSlogan'
 import * as S from './styles'
 
 export const Home = () => {
+    const { push } = useRouter()
+
     return(
         <LandingBackground>
+            <S.Container>
             <LogoAndSlogan/>
             <S.ButtonsContainer>
                 <Button 
-                    text="Buscar trainer" 
+                    text="Entrar" 
                     color="#202020"
                     textColor="#FFF"
+                    onClick={()=>push('/signIn')}
                 />
                 <Button 
-                    text="Sou trainer" 
+                    text="Cadastrar" 
                     color="#202020"
                     textColor="#FFF"
+                    onClick={()=>push('/signUp')}
                 />
             </S.ButtonsContainer>
-            <Link href="signIn">
-                <S.StyledLink>Já possui uma conta? Faça login</S.StyledLink>
-            </Link>
+            </S.Container>
         </LandingBackground>
     )
 }

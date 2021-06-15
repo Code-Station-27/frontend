@@ -12,7 +12,7 @@ export const Container = styled.div<ContainerProps>`
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-
+    
     >div{
         z-index: 4;
         position: relative;
@@ -20,7 +20,6 @@ export const Container = styled.div<ContainerProps>`
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 48px;
 
         height: 100vh;
         width: 100%;

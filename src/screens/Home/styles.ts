@@ -1,5 +1,20 @@
 import styled from 'styled-components'
 
+export const Container = styled.div`
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100vh;
+
+    @media (max-width: 600px){
+        padding: 0;
+    }
+`
+
 export const ButtonsContainer = styled.div`
     width: 100%;
     display: grid;
@@ -8,16 +23,9 @@ export const ButtonsContainer = styled.div`
     margin-top: 48px;
 `
 
-export const StyledLink = styled.a`
-    cursor: pointer;
-    text-decoration: none;
-    color: ${({theme})=>theme.colors.title};
-    font-weight: 600;
-    font-size: 18px;
+export const Description = styled.p`
     margin-top: 24px;
-    transition: 0.2s;
+    color: ${props => props.theme.colors.title};
+    font-size: 18px;
 
-    &:hover{
-        filter: brightness(0.8);
-    }
 `
