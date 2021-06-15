@@ -23,7 +23,7 @@ export const Header = () => {
           </li>
         </ul>
         <a href="">
-          <Image src="/images/fake_avatar.png" alt="Logo Principal no Header" width={30} height={30} />
+          <Image src="/images/fake_avatar.jpg" alt="Fake Avatar" width={30} height={30} />
         </a>
       </S.UserActions>
     </S.Container>
