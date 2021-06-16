@@ -11,6 +11,7 @@ export const Container = styled.div`
     strong{
         color: ${props => props.theme.colors.title};
         font-size: 18px;
+        text-align: center;
     }
 `
 
