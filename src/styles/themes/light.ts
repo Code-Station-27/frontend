@@ -3,7 +3,7 @@ export default {
 
     colors: {
         primary: '#33CCCC',
-        background: '#F0F0F1',
+        background: '#F5F7F9',
         font: '#232323',
         title: '#202020',
         black: '#202020',

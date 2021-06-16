@@ -1,9 +1,71 @@
-import * as S from './styles'
+import * as S from "./styles";
+
+import { Header } from "../../components/Header";
+import { PersonalCard } from "../../components/PersonalCard";
+import { Input } from "../../components/Input";
 
 export const Dashboard = () => {
-    return(
-        <S.Container>
-            
-        </S.Container>
-    )
-}
+  return (
+    <>
+      <S.Container>
+        <Header />
+        <S.Aside>
+          <span>Meus agendamentos</span>
+          <PersonalCard
+            rating={5}
+            name="Daniel Filgueira"
+            description="Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
+          />
+        </S.Aside>
+        <S.Content>
+          <S.ContentSearch>
+              <span>Buscar personal na minha cidade</span>
+              <Input name="input-personal" type="text" placeholder="Digite o nome do personal" />
+          </S.ContentSearch>
+          <S.ContentPersonals>
+            <PersonalCard
+              rating={5}
+              name="Daniel Filgueira"
+              description="Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
+            />
+            <PersonalCard
+              rating={5}
+              name="Daniel Filgueira"
+              description="Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
+            />
+            <PersonalCard
+              rating={5}
+              name="Daniel Filgueira"
+              description="Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
+            />
+            <PersonalCard
+              rating={5}
+              name="Daniel Filgueira"
+              description="Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
+            />
+            <PersonalCard
+              rating={5}
+              name="Daniel Filgueira"
+              description="Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
+            />
+            <PersonalCard
+              rating={5}
+              name="Daniel Filgueira"
+              description="Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
+            />
+            <PersonalCard
+              rating={5}
+              name="Daniel Filgueira"
+              description="Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
+            />
+            <PersonalCard
+              rating={5}
+              name="Daniel Filgueira"
+              description="Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
+            />
+          </S.ContentPersonals>
+        </S.Content>
+      </S.Container>
+    </>
+  );
+};

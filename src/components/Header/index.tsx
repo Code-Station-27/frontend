@@ -7,7 +7,7 @@ export const Header = () => {
   return (
     <S.Container>
       <S.Logo>
-        <Image src="/images/logo2.svg" alt="Logo Principal no Header" width={52} height={52} />
+        <Image src="/images/logo2.svg" alt="Logo Principal no Header" width={134} height={40} />
       </S.Logo>
       <S.UserActions>
         <ul>
