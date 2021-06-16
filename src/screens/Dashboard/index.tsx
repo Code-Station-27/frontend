@@ -3,6 +3,7 @@ import * as S from "./styles";
 import { Header } from "../../components/Header";
 import { PersonalCard } from "../../components/PersonalCard";
 import { Input } from "../../components/Input";
+import { MyTrainersCard } from "../../components/MyTrainersCard";
 
 export const Dashboard = () => {
   return (
@@ -12,7 +13,7 @@ export const Dashboard = () => {
         <S.Content>
           <S.Aside>
             <span>Meus agendamentos</span>
-            <PersonalCard
+            <MyTrainersCard
               rating={5}
               name="Daniel Filgueira"
               description="Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
