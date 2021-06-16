@@ -7,7 +7,7 @@ interface TableItemProps{
 export const TableItem: React.FC<TableItemProps> = ({isAvailable}) => {
     return(
         <S.Container isAvailable={isAvailable}>
-            {isAvailable ? 'Disponível' : 'Ocupado'}
+            <p>{isAvailable ? 'Disponível' : 'Ocupado'}</p>
         </S.Container>
     )
 }
