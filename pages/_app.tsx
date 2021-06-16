@@ -8,7 +8,7 @@ import light from '../src/styles/themes/light'
 export default function App({ Component, pageProps }) {
   return (
     <>
-      <ThemeProvider theme={light}>
+      <ThemeProvider theme={dark}>
         <GlobalStyle /> 
         <Component {...pageProps} />
       </ThemeProvider>

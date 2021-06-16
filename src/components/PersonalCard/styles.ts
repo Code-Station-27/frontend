@@ -5,7 +5,7 @@ display: flex;
 flex-direction: column;
 align-items: center;
 justify-items: center;
-background-color: #fff;
+background-color: ${({theme})=>theme.colors.shape};
 border-radius: 8px;
 
 
@@ -13,7 +13,7 @@ border-radius: 8px;
 box-shadow: 0px 0px 4px 0px rgba(0,0,0,0.2);
 
 padding: 20px;
-width: 240px;
+width: 100%;
 min-height: 240px;
 
 transition: box-shadow 0.2s;

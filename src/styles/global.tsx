@@ -9,13 +9,14 @@ export default createGlobalStyle `
     }
     body {
         background: ${props => props.theme.colors.background};
-        color: ${props => props.theme.colors.title};
+        color: ${props => props.theme.colors.font};
         -webkit-font-smoothing: antialiased;
         font-family: "Nunito", serif;
         font-size: 16px;
     }
     h1, h2, h3, h4, h5, h6, strong {
         font-weight: 500;
+        color: ${props => props.theme.colors.title};
     }
 
     button, input, textarea {

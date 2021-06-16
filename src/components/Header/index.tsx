@@ -6,26 +6,14 @@ import * as S from "./styles";
 export const Header = () => {
   return (
     <S.Container>
-      <S.Logo>
-        <Image src="/images/logo2.svg" alt="Logo Principal no Header" width={134} height={40} />
-      </S.Logo>
-      <S.UserActions>
-        <ul>
-          <li>
-            <Link href="/">
-              <a>Home</a>
-            </Link>
-          </li>
-          <li>
-            <Link href="/">
-              <a>Home</a>
-            </Link>
-          </li>
-        </ul>
-        <a href="">
-          <Image src="/images/fake_avatar.jpg" alt="Fake Avatar" width={30} height={30} />
-        </a>
-      </S.UserActions>
+        <S.Logo>
+          <Image src="/images/logo2.svg" alt="Logo Principal no Header" width={134} height={40} />
+        </S.Logo>
+        <S.UserActions>
+          <a href="">
+            <Image src="/images/fake_avatar.jpg" alt="Fake Avatar" width={30} height={30} />
+          </a>
+        </S.UserActions>
     </S.Container>
   );
 };

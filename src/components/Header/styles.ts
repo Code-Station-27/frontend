@@ -1,13 +1,12 @@
 import styled from 'styled-components';
 
 export const Container = styled.header`
+  padding: 24px;
+
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-
-  grid-area: header;
-
-  padding: 20px 40px;
 
   width: 100%;
   height: 80px;
