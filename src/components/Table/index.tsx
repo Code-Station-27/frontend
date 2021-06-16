@@ -1,9 +1,43 @@
+import { useState } from 'react'
 import { useViewport } from '../../hooks/useViewport'
 import { TableItem } from '../TableItem'
 import * as S from './styles'
 
 export const Table = () => {
     const { width } = useViewport()
+
+    const [selectedDay, setSelectedDay] = useState(0)
+
+    const weekdays = [
+        {
+            longName: 'Domingo',
+            shortName: 'D'
+        },
+        {
+            longName: 'Segunda',
+            shortName: 'S'
+        },
+        {
+            longName: 'Terça',
+            shortName: 'T'
+        },
+        {
+            longName: 'Quarta',
+            shortName: 'Q'
+        },
+        {
+            longName: 'Quinta',
+            shortName: 'Q'
+        },
+        {
+            longName: 'Sexta',
+            shortName: 'S'
+        },
+        {
+            longName: 'Sábado',
+            shortName: 'S'
+        }
+    ]
 
     return width > 900 ? (
         <S.Container>
@@ -28,16 +62,19 @@ export const Table = () => {
     ) : (
         <S.Container>
             <S.Header>
-                <strong>{width > 700 ? 'Domingo' : 'D'}</strong>
-                <strong>{width > 700 ? 'Segunda' : 'S'}</strong>
-                <strong>{width > 700 ? 'Terça' : 'T'}</strong>
-                <strong>{width > 700 ? 'Quarta' : 'Q'}</strong>
-                <strong>{width > 700 ? 'Quinta' : 'Q'}</strong>
-                <strong>{width > 700 ? 'Sexta' : 'S'}</strong>
-                <strong>{width > 700 ? 'Sábado' : 'S'}</strong>
+                {weekdays.map((day,index) => (
+                    <S.SelectableDay 
+                        isSelected={selectedDay === index} 
+                        isSmall={width < 700}
+                        onClick={()=>setSelectedDay(index)}
+                    >
+                        <strong>{width > 700 ? day.longName : day.shortName}</strong>
+                    </S.SelectableDay>
+                ))}
+                
             </S.Header>
             <S.Body>
-            <strong>7:00 - 7:45</strong> <TableItem isAvailable/> 
+                <strong>7:00 - 7:45</strong> <TableItem isAvailable/> 
                 <strong>8:00 - 8:45</strong> <TableItem isAvailable/> 
                 <strong>9:00 - 9:45</strong> <TableItem isAvailable/> 
                 <strong>10:00 - 10:45</strong> <TableItem isAvailable/> 
