@@ -45,5 +45,7 @@ font-weight: bold;
 font-size: 18px;
 width: 100%;
 `
-export const Description = styled.div``
+export const Description = styled.div`
+  text-overflow: ellipsis;
+`
 export const Rating = styled.div``

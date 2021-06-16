@@ -21,7 +21,7 @@ export const PersonalCard = ({
       </S.Header>
       <S.ContentInfos>
         <S.Description>{description}</S.Description>
-        <S.Rating>{rating}</S.Rating>
+        {/*<S.Rating>{rating}</S.Rating>*/}
       </S.ContentInfos>
     </S.Container>
   );

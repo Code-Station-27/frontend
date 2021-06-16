@@ -24,6 +24,10 @@ export const Header = styled.header`
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     gap: 16px;
+
+    @media (max-width: 900px){
+        grid-template-columns: repeat(7, 1fr);
+    }
 `
 
 export const Body = styled.div`
@@ -36,4 +40,8 @@ export const Body = styled.div`
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     gap: 16px;
+
+    @media (max-width: 900px){
+        grid-template-columns: 1fr 1fr;
+    }
 `
