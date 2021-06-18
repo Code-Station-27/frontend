@@ -1,5 +1,7 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
 
+import { AuthProvider } from '../src/contexts/AuthContext'
+
 import GlobalStyle from '../src/styles/global'
 
 import dark from '../src/styles/themes/dark'
@@ -9,8 +11,10 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <ThemeProvider theme={dark}>
-        <GlobalStyle /> 
-        <Component {...pageProps} />
+        <AuthProvider>
+          <GlobalStyle /> 
+          <Component {...pageProps} />
+        </AuthProvider>
       </ThemeProvider>
     </>
   )
