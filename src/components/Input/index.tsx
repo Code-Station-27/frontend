@@ -23,8 +23,8 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps> = ({name
             {Icon && <Icon size={20}/>}
             <input 
                 type="text"
-                onFocus={()=>{setIsFocused(true)}}
-                onBlur={()=>{setIsFocused(false)}}
+                onFocus={()=>{setIsFocused(true); console.log('focus')}}
+                onBlur={()=>{setIsFocused(false); console.log('blur')}}
                 {...rest}
                 ref={ref}
             />

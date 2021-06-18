@@ -14,7 +14,8 @@ import { LandingBackground } from '../../components/LandingBackground'
 import { LogoAndSlogan } from '../../components/LogoAndSlogan'
 import { Input } from '../../components/Input'
 import { Button } from '../../components/Button'
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
+import { useEffect } from 'react'
 
 interface SignupData {
     name: string
@@ -28,32 +29,46 @@ interface SignupData {
     type: 'COMMON' | 'PERSONAL'
   }
 
+const signupFormSchema = Yup.object().shape({
+    name: Yup.string().required('Nome obrigatório'),
+    email: Yup.string().required('E-mail obrigatório').email('E-mail inválido'),
+    password: Yup.string().required('Senha obrigatória'),
+    phone: Yup.string().required('Número de telefone obrigatório'),
+    city: Yup.string().required('Cidade obrigatória'),
+    street: Yup.string().required('Rua obrigatória'),
+    district: Yup.string().required('Bairro obrigatório'),
+    number: Yup.string().required('Número obrigatório'),
+    type: Yup.string().required('Tipo de usuário obrigatório')
+})
+
 export const SignUp = () => {
-    const signupFormSchema = Yup.object().shape({
-        name: Yup.string().required('Nome obrigatório'),
-        email: Yup.string().required('E-mail obrigatório').email('E-mail inválido'),
-        password: Yup.string().required('Senha obrigatória'),
-        phone: Yup.string().required('Número de telefone obrigatório'),
-        city: Yup.string().required('Cidade obrigatória'),
-        street: Yup.string().required('Rua obrigatória'),
-        district: Yup.string().required('Bairro obrigatório'),
-        number: Yup.string().required('Número obrigatório'),
-    })
+    const [type, setType] = useState<'COMMON' | 'PERSONAL'>('COMMON')
 
     const { 
         register, 
         handleSubmit, 
         formState, 
-        formState: { errors } 
+        formState: { errors },
+        setValue
     } = useForm<SignupData>({
         resolver: yupResolver(signupFormSchema)
     })
 
     const { signUp } = useAuth()
 
-    const handleSignUp: SubmitHandler<SignupData> = (values) => {
-        signUp(values)
+    const handleSignUp: SubmitHandler<SignupData> = async (values) => {
+        console.log(values)
+        //await signUp(values)
     }
+
+    const handleUserTypeChange = (user_type: 'COMMON' | 'PERSONAL') => {
+        setType(user_type)
+        //setValue('type', user_type)
+    }
+
+    useEffect(()=>{
+        console.log(errors)
+    },[errors])
 
     return(
         <LandingBackground>
@@ -72,23 +87,23 @@ export const SignUp = () => {
                         name="email" 
                         placeholder="Digite seu email"
                         icon={FiMail}
-                        {...register("email")}
-                        error={errors.email}
+                        /* {...register("email")}
+                        error={errors.email} */
                     />
                     <Input 
                         name="phone" 
                         placeholder="Digite seu número"
                         icon={FiPhone}
-                        {...register("phone")}
-                        error={errors.phone}
+                        /* {...register("phone")}
+                        error={errors.phone} */
                     />
                     <Input 
                         name="password" 
                         type="password" 
                         placeholder="Digite sua senha"
                         icon={FiLock}
-                        {...register("password")}
-                        error={errors.password}
+                        /* {...register("password")}
+                        error={errors.password} */
                     />
                     <Input 
                         name="password-confirmation" 
@@ -106,29 +121,29 @@ export const SignUp = () => {
                         name="city" 
                         placeholder="Digite sua cidade"
                         icon={FiMapPin}
-                        {...register("city")}
-                        error={errors.city}
+                        /* {...register("city")}
+                        error={errors.city} */
                     />
                     <Input 
                         name="neighborhood" 
                         placeholder="Digite seu bairro"
                         icon={FiMapPin}
-                        {...register("district")}
-                        error={errors.district}
+                        /* {...register("district")}
+                        error={errors.district} */
                     />
                     <Input 
                         name="street" 
                         placeholder="Digite sua rua"
                         icon={FiMapPin}
-                        {...register("street")}
-                        error={errors.street}
+                        /* {...register("street")}
+                        error={errors.street} */
                     />
                     <Input 
                         name="number" 
                         placeholder="Digite o número da sua casa"
                         icon={FiMapPin}
-                        {...register("number")}
-                        error={errors.number}
+                        /* {...register("number")}
+                        error={errors.number} */
                     />
                     <Input 
                         name="complement" 
@@ -136,9 +151,28 @@ export const SignUp = () => {
                         icon={FiMapPin}
                     />
                 </div>
+                <S.TransactionTypeContainer>
+                    <S.RadioBox
+                        type="button"
+                        onClick={() => handleUserTypeChange('COMMON')}
+                        isActive={type === 'COMMON'}
+                        activeColor="green"
+                    >
+                        <span>Sou cliente</span> 
+                    </S.RadioBox>
+
+                    <S.RadioBox
+                        type="button"
+                        onClick={() => handleUserTypeChange('PERSONAL')}
+                        isActive={type === 'PERSONAL'}
+                        activeColor="red"
+                    >
+                       <span>Sou prestador</span>
+                    </S.RadioBox>
+                </S.TransactionTypeContainer>
                 <Button 
                     type="submit"
-                    text="Entrar" 
+                    text="Cadastrar" 
                     color="#202020" 
                     textColor="#FFF"
                 />

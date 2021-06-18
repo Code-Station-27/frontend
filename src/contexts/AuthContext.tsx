@@ -81,6 +81,8 @@ export function AuthProvider({children}){
 
     async function signUp(data: User){
         try{
+            console.log('asdasd')
+
             const response = await api.post('/users', data)
 
             console.log(response)
