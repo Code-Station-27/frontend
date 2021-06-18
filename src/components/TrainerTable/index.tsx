@@ -65,6 +65,7 @@ export const TrainerTable = () => {
             <S.Header>
                 {weekdays.map((day,index) => (
                     <S.SelectableDay 
+                        key={day.longName}
                         isSelected={selectedDay === index} 
                         isSmall={width < 700}
                         onClick={()=>setSelectedDay(index)}
