@@ -3,11 +3,16 @@ import { destroyCookie, parseCookies } from "nookies"
 
 import { AuthTokenError } from "../services/errors/AuthTokenError"
 
-export function withSSRAuth<P>(fn: GetServerSideProps<P>){
+type WithSSROptions = {
+    permissions?: string[]
+    roles?: string[]
+}
+
+export function withSSRAuth<P>(fn: GetServerSideProps<P>, options?: WithSSROptions ){
     return async (ctx: GetServerSidePropsContext): Promise<GetServerSidePropsResult<P>> => {
         const cookies = parseCookies(ctx)
 
-        const token = cookies['nextauth.token']
+        const token = cookies['perfit.token']
 
         if(!token){
             return {
@@ -22,8 +27,8 @@ export function withSSRAuth<P>(fn: GetServerSideProps<P>){
             return await fn(ctx)
         }catch(error){
             if(error instanceof AuthTokenError){
-                destroyCookie(ctx, 'nextauth.token')
-                destroyCookie(ctx, 'nextauth.refreshToken')
+                destroyCookie(ctx, 'perfit.token')
+                destroyCookie(ctx, 'perfit.refreshToken')
 
                 return {
                     redirect: {
