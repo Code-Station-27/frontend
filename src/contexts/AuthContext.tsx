@@ -44,7 +44,15 @@ export function signOut(){
 export function AuthProvider({children}){
     const { push } = useRouter()
 
-    const [user, setUser] = useState<User>()
+    const [user, setUser] = useState<User>(()=>{
+        const { 'perfit.user': user }= parseCookies()
+
+        if(user){
+            return JSON.parse(user)
+        }
+
+        return {} as User
+    })
 
     const isAuthenticated = !!user
 
@@ -55,13 +63,19 @@ export function AuthProvider({children}){
                 password
             })
 
-            const { user, token, refreshToken } = response.data
+            console.log(response.data)
 
-            setCookie(undefined, 'nextauth.token', token, {
+            const { user, access_token, refresh_token } = response.data
+
+            setCookie(undefined, 'perfit.token', access_token, {
                 maxAge: 60 * 60 * 24 * 30, // 30 days
                 path: '/'
             })
-            setCookie(undefined, 'nextauth.refreshToken', refreshToken, {
+            setCookie(undefined, 'perfit.refreshToken', refresh_token, {
+                maxAge: 60 * 60 * 24 * 30, // 30 days
+                path: '/'
+            })
+            setCookie(undefined, 'perfit.user', JSON.stringify(user), {
                 maxAge: 60 * 60 * 24 * 30, // 30 days
                 path: '/'
             })
@@ -71,7 +85,7 @@ export function AuthProvider({children}){
                 ...user
             })
 
-            api.defaults.headers['Authorization'] = `Bearer ${token}`
+            api.defaults.headers['Authorization'] = `Bearer ${access_token}`
 
             push('/dashboard')
         }catch(error){
@@ -81,11 +95,9 @@ export function AuthProvider({children}){
 
     async function signUp(data: User){
         try{
-            console.log('asdasd')
-
             const response = await api.post('/users', data)
 
-            console.log('response',response)
+            push('/signIn')
         }catch(err){
             console.log(err)
         }

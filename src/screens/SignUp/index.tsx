@@ -122,7 +122,7 @@ export const SignUp = () => {
                     />
                     <Input 
                         name="phone" 
-                        placeholder="Digite seu número"
+                        placeholder="Digite seu número (+55DD000000000)"
                         icon={FiPhone}
                         control={control}
                         error={errors.phone}
@@ -189,12 +189,12 @@ export const SignUp = () => {
                         control={control}
                         error={errors.number}
                     />
-                    <Input 
+                    {/* <Input 
                         name="complement" 
                         placeholder="Complemento"
                         icon={FiMapPin}
                         control={control}
-                    />
+                    /> */}
                 </div>
                 <S.TransactionTypeContainer>
                     <S.RadioBox
