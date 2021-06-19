@@ -27,7 +27,7 @@ export const Form = styled.form`
     max-width: 360px;
     margin: 32px 0;
 
-    div{
+    > div{
         margin-bottom: 24px;
     }
 `
@@ -83,14 +83,14 @@ export const UserTypeContainer = styled.div<TypeContainerProps>`
             ${
                 (props)=> props.type === 'COMMON' 
                 
-                && css `background-color: ${({theme})=>theme.colors.primary}` 
+                && css `background-color: ${({theme})=>theme.colors.primary};` 
             }
         }
         
         &#trainer {
             ${
                 (props)=> props.type === 'TRAINER' 
-                && css `background-color: ${({theme})=>theme.colors.primary}` 
+                && css `background-color: ${({theme})=>theme.colors.primary};` 
             }
         }
     }
@@ -128,3 +128,15 @@ export const RadioBox = styled.button<RadioBoxProps>`
     color: ${({theme})=>theme.colors.title};
   }
 `;
+
+export const SelectContainer = styled.span`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 8px;
+
+    div{
+        width: 48%;
+    }
+`

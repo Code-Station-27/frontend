@@ -85,7 +85,7 @@ export function AuthProvider({children}){
 
             const response = await api.post('/users', data)
 
-            console.log(response)
+            console.log('response',response)
         }catch(err){
             console.log(err)
         }

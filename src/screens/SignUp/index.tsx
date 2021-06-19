@@ -1,5 +1,5 @@
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
-
 import { FiUser, FiLock, FiMail, FiPhone, FiMapPin } from 'react-icons/fi'
 import { useForm, SubmitHandler } from 'react-hook-form'
 
@@ -14,8 +14,8 @@ import { LandingBackground } from '../../components/LandingBackground'
 import { LogoAndSlogan } from '../../components/LogoAndSlogan'
 import { Input } from '../../components/Input'
 import { Button } from '../../components/Button'
-import { useCallback, useState } from 'react'
-import { useEffect } from 'react'
+import { Select } from '../../components/Select'
+import { api } from '../../services/api'
 
 interface SignupData {
     name: string
@@ -44,6 +44,12 @@ const signupFormSchema = Yup.object().shape({
 export const SignUp = () => {
     const [type, setType] = useState<'COMMON' | 'PERSONAL'>('COMMON')
 
+    const [ufs, setUfs] = useState([])
+    const [selectedUf, setSelectedUf] = useState('')
+
+    const [cities, setCities] = useState([])
+    const [selectedCity, setSelectedCity] = useState('')
+
     const {
         handleSubmit,
         formState: { errors },
@@ -57,17 +63,42 @@ export const SignUp = () => {
 
     const handleSignUp: SubmitHandler<SignupData> = async (values) => {
         console.log(values)
-        //await signUp(values)
+        await signUp(values)
     }
 
     const handleUserTypeChange = (user_type: 'COMMON' | 'PERSONAL') => {
         setType(user_type)
-        setValue('type', user_type)
     }
 
     useEffect(()=>{
         console.log(errors)
     },[errors])
+
+    useEffect(()=>{
+        setValue('type', type)
+    },[type])
+
+    useEffect(()=>{
+        api.get('/states').then((response)=>{
+            setUfs(response.data.map(state => (
+                {label: state.name, value: state.uf}
+            )))
+        })
+    },[])
+
+    useEffect(()=>{
+        if(!selectedUf) return
+
+        api.get(`/cities?state_uf=${selectedUf}`).then((response)=>{
+            setCities(response.data.map(city => (
+                {label: city.name, value: city.id}
+            )))
+        })
+    },[selectedUf])
+
+    useEffect(()=>{
+        setValue('city', selectedCity)
+    },[selectedCity])
 
     return(
         <LandingBackground>
@@ -104,27 +135,39 @@ export const SignUp = () => {
                         control={control}
                         error={errors.password}
                     />
-                    <Input 
+                    {/* <Input 
                         name="password-confirmation" 
                         type="password" 
                         placeholder="Confirme sua senha"
                         icon={FiLock}
                         control={control}
                         error={errors.password}
-                    />
+                    /> */}
                 </div>
                 <S.AddressTextContainer>
                     <h2>Endereço</h2>
                     <p>Ele só vai aparecer para quem você contratar.</p>
                 </S.AddressTextContainer>
                 <div>
-                    <Input 
-                        name="city" 
-                        placeholder="Digite sua cidade"
-                        icon={FiMapPin}
-                        control={control}
-                        error={errors.city}
-                    />
+                    <S.SelectContainer>
+                        <Select 
+                            placeholder="Estado" 
+                            name="uf" 
+                            options={ufs}
+                            onChange={(e)=>{setSelectedUf(e.target.value)}}
+                            value={selectedUf}
+                            control={control}
+                        />
+                        <Select 
+                            placeholder="Cidade" 
+                            name="city" 
+                            options={cities}
+                            onChange={(e)=>{setSelectedCity(e.target.value)}}
+                            value={selectedCity}
+                            control={control}
+                            error={errors.city}
+                        />
+                    </S.SelectContainer>
                     <Input 
                         name="district" 
                         placeholder="Digite seu bairro"
