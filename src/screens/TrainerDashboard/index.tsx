@@ -11,7 +11,6 @@ export const TrainerDashboard = () => {
     return(
         <S.Container>
             <Header/>
-            {user && user.type}
             <S.Content>
                 <S.Heading>Próximo treino: </S.Heading>
                 <S.NextTraining>
