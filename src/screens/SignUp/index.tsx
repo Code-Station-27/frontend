@@ -44,15 +44,14 @@ const signupFormSchema = Yup.object().shape({
 export const SignUp = () => {
     const [type, setType] = useState<'COMMON' | 'PERSONAL'>('COMMON')
 
-    const { 
-        register, 
-        handleSubmit, 
-        formState, 
+    const {
+        handleSubmit,
         formState: { errors },
+        control,
         setValue
-    } = useForm<SignupData>({
+      } = useForm({
         resolver: yupResolver(signupFormSchema)
-    })
+      })
 
     const { signUp } = useAuth()
 
@@ -63,7 +62,7 @@ export const SignUp = () => {
 
     const handleUserTypeChange = (user_type: 'COMMON' | 'PERSONAL') => {
         setType(user_type)
-        //setValue('type', user_type)
+        setValue('type', user_type)
     }
 
     useEffect(()=>{
@@ -76,40 +75,42 @@ export const SignUp = () => {
             <LogoAndSlogan/>
             <S.Form onSubmit={handleSubmit(handleSignUp)}>
                 <div>
-                    <Input 
-                        name="name" 
+                    <Input
+                        name="name"
                         placeholder="Digite seu nome"
                         icon={FiUser}
-                        {...register("name")}
+                        control={control}
                         error={errors.name}
                     />
                     <Input 
                         name="email" 
                         placeholder="Digite seu email"
                         icon={FiMail}
-                        /* {...register("email")}
-                        error={errors.email} */
+                        control={control}
+                        error={errors.email}
                     />
                     <Input 
                         name="phone" 
                         placeholder="Digite seu número"
                         icon={FiPhone}
-                        /* {...register("phone")}
-                        error={errors.phone} */
+                        control={control}
+                        error={errors.phone}
                     />
                     <Input 
                         name="password" 
                         type="password" 
                         placeholder="Digite sua senha"
                         icon={FiLock}
-                        /* {...register("password")}
-                        error={errors.password} */
+                        control={control}
+                        error={errors.password}
                     />
                     <Input 
                         name="password-confirmation" 
                         type="password" 
                         placeholder="Confirme sua senha"
                         icon={FiLock}
+                        control={control}
+                        error={errors.password}
                     />
                 </div>
                 <S.AddressTextContainer>
@@ -121,34 +122,35 @@ export const SignUp = () => {
                         name="city" 
                         placeholder="Digite sua cidade"
                         icon={FiMapPin}
-                        /* {...register("city")}
-                        error={errors.city} */
+                        control={control}
+                        error={errors.city}
                     />
                     <Input 
-                        name="neighborhood" 
+                        name="district" 
                         placeholder="Digite seu bairro"
                         icon={FiMapPin}
-                        /* {...register("district")}
-                        error={errors.district} */
+                        control={control}
+                        error={errors.district}
                     />
                     <Input 
                         name="street" 
                         placeholder="Digite sua rua"
                         icon={FiMapPin}
-                        /* {...register("street")}
-                        error={errors.street} */
+                        control={control}
+                        error={errors.street}
                     />
                     <Input 
                         name="number" 
                         placeholder="Digite o número da sua casa"
                         icon={FiMapPin}
-                        /* {...register("number")}
-                        error={errors.number} */
+                        control={control}
+                        error={errors.number}
                     />
                     <Input 
                         name="complement" 
                         placeholder="Complemento"
                         icon={FiMapPin}
+                        control={control}
                     />
                 </div>
                 <S.TransactionTypeContainer>
