@@ -20,6 +20,8 @@ export function setupAPIClient(ctx = undefined){
       return response;
     }, (error: AxiosError) => {
       if (error.response.status === 401) {
+        console.log('error 401')
+
         if (error.response.data?.code === 'token.expired') {
           cookies = parseCookies(ctx);
     
@@ -29,14 +31,18 @@ export function setupAPIClient(ctx = undefined){
     
           if (!isRefreshing) {
             isRefreshing = true
-    
+            
+            console.log('refreshing', old_token, refresh_token)
+
             api.post('/auth/refresh-token', {
                 token: old_token,
                 refresh_token,
             }).then(response => {
-              const { token } = response.data;
-    
-              setCookie(ctx, 'perfit.token', token, {
+              const { access_token } = response.data;
+
+              console.log(access_token, response.data)
+
+              setCookie(ctx, 'perfit.token', access_token, {
                 maxAge: 60 * 60 * 24 * 30, // 30 days
                 path: '/'
               })
@@ -46,9 +52,9 @@ export function setupAPIClient(ctx = undefined){
                 path: '/'
               })
     
-              api.defaults.headers['Authorization'] = `Bearer ${token}`;
+              api.defaults.headers['Authorization'] = `Bearer ${access_token}`;
     
-              failedRequestsQueue.forEach(request => request.onSuccess(token))
+              failedRequestsQueue.forEach(request => request.onSuccess(access_token))
               failedRequestsQueue = [];
             }).catch(err => {
               failedRequestsQueue.forEach(request => request.onFailure(err))

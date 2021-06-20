@@ -1,12 +1,70 @@
 import Link from "next/link";
 import { DefaultTheme } from "styled-components";
+import { useInfiniteQuery } from 'react-query'
+
 import { Header } from "../../components/Header";
 import { MyTrainersCard } from "../../components/MyTrainersCard";
 import { PersonalCard } from "../../components/PersonalCard";
+
 import * as S from "./styles";
+import { api } from "../../services/api";
+import { useEffect } from "react";
+import { useAuth } from "../../contexts/AuthContext";
 // import { FiSearch } from 'react-icons/fi'
 
+interface apiResponse{
+
+}
+
 export const Dashboard = () => {
+
+  const { user } = useAuth()
+
+  async function fetchTrainer({
+    pageParam = null,
+  }) {
+    const { data } = await api.get(`/personal`, {
+      params: {
+        city: user.city,
+        page: 1,
+        amountPerPage: 10
+      }
+    })
+
+    return data
+  }
+
+  useEffect(()=>{
+    console.log(user.city)
+
+    api.get(`/personal`, {
+      params: {
+        city: user.city.id,
+        page: 1,
+        amountPerPage: 10
+      }
+    }).then(response => console.log(response.data))
+  },[user])
+
+  /* const {
+    data,
+    isLoading,
+    isError,
+    isFetchingNextPage,
+    fetchNextPage,
+    hasNextPage,
+  } = useInfiniteQuery(
+    'images',
+    fetchTrainer, 
+    {
+      getNextPageParam: lastPage => lastPage.after ?? null,
+    }
+  ) */
+  
+  /* useEffect(()=>{
+    console.log('react query',data)
+  },[]) */
+
   return (
     <>
       <Header />
