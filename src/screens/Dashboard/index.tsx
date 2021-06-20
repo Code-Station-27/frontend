@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { DefaultTheme } from "styled-components";
 import { Header } from "../../components/Header";
 import { MyTrainersCard } from "../../components/MyTrainersCard";
 import { PersonalCard } from "../../components/PersonalCard";

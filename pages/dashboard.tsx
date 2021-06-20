@@ -1,5 +1,6 @@
 import { GetServerSideProps } from 'next'
 import { parseCookies } from 'nookies'
+import { DefaultTheme } from 'styled-components'
 import { Dashboard } from '../src/screens/Dashboard'
 import { TrainerDashboard } from '../src/screens/TrainerDashboard'
 import { User } from '../src/types/User'
@@ -9,7 +10,7 @@ interface Props {
     user: User
 }
 
-export default function DashboardPage({user}){
+export default function DashboardPage({user, theme}){
     return user.type === 'COMMON' ? (
         <Dashboard/>
     ):(

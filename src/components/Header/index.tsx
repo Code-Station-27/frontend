@@ -1,9 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import * as S from "./styles";
 import { FiArrowLeft, FiLogOut, FiMoon } from "react-icons/fi";
 import { useAuth } from "../../contexts/AuthContext";
+import Switch from 'react-switch'
+
+import * as S from "./styles";
+import { useTheme } from "../../contexts/ThemeContext";
 
 interface HeaderProps {
   shouldGoBack?: boolean;
@@ -12,6 +15,8 @@ interface HeaderProps {
 export const Header = ({ shouldGoBack }: HeaderProps) => {
   const { back } = useRouter();
   const { signOut } = useAuth();
+
+  const { theme, toggleTheme } = useTheme()
 
   return (
     <S.Container>
@@ -30,6 +35,14 @@ export const Header = ({ shouldGoBack }: HeaderProps) => {
       </S.ContainerLogo>
 
       <S.UserActions>
+        {/* <Switch
+          onChange={()=>{toggleTheme()}}
+          checked={theme.title === 'light' ? true : false}
+          checkedIcon={false}
+          uncheckedIcon={false}
+          offColor="#3E3B47"
+          onColor="#FF9000"
+        /> */}
         <Link href="/updateProfile">
           <a>
             <Image
