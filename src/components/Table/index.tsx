@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useViewport } from "../../hooks/useViewport";
+import { hours } from "../../utils/hours";
+import { weekdays } from "../../utils/weekdays";
 import { TableItem } from "../TableItem";
 import * as S from "./styles";
 
@@ -27,51 +29,6 @@ export const Table: React.FC<TableProps> = ({
   console.log(trainerData);
 
   const [selectedDay, setSelectedDay] = useState(0);
-
-  const weekdays = [
-    {
-      longName: "Domingo",
-      shortName: "D",
-    },
-    {
-      longName: "Segunda",
-      shortName: "S",
-    },
-    {
-      longName: "Terça",
-      shortName: "T",
-    },
-    {
-      longName: "Quarta",
-      shortName: "Q",
-    },
-    {
-      longName: "Quinta",
-      shortName: "Q",
-    },
-    {
-      longName: "Sexta",
-      shortName: "S",
-    },
-    {
-      longName: "Sábado",
-      shortName: "S",
-    },
-  ];
-
-  const hours = [
-    "7:00-7:45",
-    "8:00-8:45",
-    "9:00-9:45",
-    "10:00-10:45",
-    "11:00-11:45",
-    "12:00-12:45",
-    "13:00-13:45",
-    "14:00-14:45",
-    "15:00-15:45",
-    "16:00-16:45",
-    "17:00-17:45",
-  ];
 
   const handleItemClick = (
     isAvailable: boolean,

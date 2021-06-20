@@ -2,19 +2,19 @@ import Image from 'next/image'
 
 import { FiXCircle } from 'react-icons/fi'
 import { useTheme } from 'styled-components';
+import { hours } from '../../utils/hours';
+import { weekdays } from '../../utils/weekdays';
 
 import * as S from "./styles";
 
 interface PersonalCardProps {
   name: string;
-  description: string;
-  rating: number;
+  lessons: {hour: number, day: number}[]
 }
 
 export const MyTrainersCard = ({
   name,
-  description,
-  rating,
+  lessons
 }: PersonalCardProps) => {
   const { colors } = useTheme()
 
@@ -25,20 +25,16 @@ export const MyTrainersCard = ({
         <S.Name>{name}</S.Name>
       </S.Header>
       <S.ContentInfos>
-        <S.MyTrainerLesson>
-          <div>
-            <strong>Quarta feira</strong>
-            <p>10:00 - 10:45</p>
-          </div>
-          <FiXCircle size={24} color={colors.red}/>
-        </S.MyTrainerLesson>
-        <S.MyTrainerLesson>
-          <div>
-            <strong>Quinta feira</strong>
-            <p>10:00 - 10:45</p>
-          </div>
-          <FiXCircle size={24} color={colors.red} onClick={()=>{}}/>
-        </S.MyTrainerLesson>
+        {lessons.map(lesson => (
+          <S.MyTrainerLesson>
+            <div>
+              <strong>{weekdays[lesson.day].longName}</strong>
+              <p>{hours[lesson.hour]}</p>
+            </div>
+            <FiXCircle size={24} color={colors.red} onClick={()=>{}}/>
+          </S.MyTrainerLesson>
+        ))}
+        
       </S.ContentInfos>
     </S.Container>
   );
