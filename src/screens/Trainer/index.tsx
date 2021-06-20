@@ -48,7 +48,7 @@ export const Trainer = () => {
         <button onClick={handleOpenModal}>Abrir Modal</button>
       </S.Content>
 
-      <GenericModal isOpen={modalOpen}>
+      <GenericModal isOpen={modalOpen} onRequestClose={handleCloseModal}>
         <S.ContainerIcons>
           <FiX size={32} onClick={handleCloseModal} />
         </S.ContainerIcons>

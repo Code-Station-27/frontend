@@ -13,7 +13,7 @@ export const Container = styled.button<ButtonProps>`
   background: ${(props) => { 
     return !!props.color 
       ? props.color 
-      : props.theme.colors.button_green
+      : props.theme.colors.primary
   }};
   border: 0;
   border-radius: 8px;

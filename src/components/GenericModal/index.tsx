@@ -1,10 +1,9 @@
-import Modal from "react-modal";
+import Modal, { Props } from "react-modal";
 import { useTheme } from "styled-components";
 
-interface GenericModalProps {
+interface GenericModalProps extends Props {
   children: React.ReactNode;
   isOpen: boolean;
-  onRequestClose?: boolean;
 }
 
 export const GenericModal = ({
@@ -23,6 +22,8 @@ export const GenericModal = ({
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
       backgroundColor: `${colors.shape}`,
+      border: 0,
+      borderRadius: 16
     },
     overlay: {
       backgroundColor: "rgba(0, 0, 0, 0.8)",
@@ -35,6 +36,7 @@ export const GenericModal = ({
       onRequestClose={onRequestClose}
       style={customStyles}
       contentLabel="Example Modal"
+      shouldCloseOnOverlayClick={true}
     >
       {children}
     </Modal>
