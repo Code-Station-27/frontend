@@ -24,8 +24,9 @@ const AuthContext = createContext({} as AuthContextData)
 let authChannel: BroadcastChannel
 
 export function signOut(){
-    destroyCookie(undefined, 'nextauth.token')
-    destroyCookie(undefined, 'nextauth.refreshToken')
+    destroyCookie(undefined, 'perfit.token')
+    destroyCookie(undefined, 'perfit.refreshToken')
+    destroyCookie(undefined, 'perfit.user')
 
     authChannel.postMessage('signout')
 
@@ -53,8 +54,6 @@ export function AuthProvider({children}){
                 email,
                 password
             })
-
-            console.log(response.data)
 
             const { user, access_token, refresh_token } = response.data
 

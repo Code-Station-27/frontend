@@ -65,4 +65,15 @@ export const UserActions = styled.div`
     z-index: 0;
     cursor: pointer;
   }
+
+  svg {
+    margin-left: 20px;
+    color: #202020;
+
+    &:hover {
+      cursor: pointer;
+      color: #FFF;
+    }
+  }
+  
 ` 
