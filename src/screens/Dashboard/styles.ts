@@ -5,6 +5,11 @@ export const Container = styled.div`
 
   display: flex;
   flex-direction: column;
+  align-items: center;
+
+  overflow:scroll;
+  overflow-x:hidden;
+  padding: 24px 0;
 
 `
 
