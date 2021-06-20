@@ -1,5 +1,6 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import Image from "next/image";
+import { useEffect } from "react";
 import { ChangeEvent, useCallback } from "react";
 import { useForm } from "react-hook-form";
 import {
@@ -37,7 +38,8 @@ export const UpdateProfile = () => {
     handleSubmit,
     control,
     formState: { errors },
-    register
+    register,
+    setValue,
   } = useForm({
     resolver: yupResolver(UpdateProfileFormSchema)
   });
@@ -59,6 +61,16 @@ export const UpdateProfile = () => {
       console.log(user);
     }
   }, []);
+
+  useEffect(()=>{
+    setValue('name', user.name)
+    setValue('email', user.email)
+    setValue('phone', user.phone)
+    setValue('district', user.district)
+    setValue('street', user.street)
+    setValue('phone', user.phone)
+    setValue('number', user.number)
+  },[user])
 
   return (
     <>
