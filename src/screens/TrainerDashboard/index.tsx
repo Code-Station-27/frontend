@@ -1,5 +1,4 @@
 import { Header } from '../../components/Header'
-import { Table } from '../../components/Table'
 import { TrainerTable } from '../../components/TrainerTable'
 import { useAuth } from '../../contexts/AuthContext'
 

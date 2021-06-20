@@ -53,4 +53,8 @@ export const MyTrainerLesson = styled.div`
       margin-bottom: 4px;
     }
   }
+
+  svg{
+    cursor: pointer;
+  }
 `

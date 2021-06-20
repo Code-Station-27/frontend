@@ -9,16 +9,7 @@ import { Dashboard } from '../src/screens/Dashboard'
 import { TrainerDashboard } from '../src/screens/TrainerDashboard'
 import { withSSRAuth } from '../src/utils/withSSRAuth'
 
-type User = {
-    name: string
-    email: string
-    phone: string
-    city: string
-    street: string
-    number: string
-    district: string
-    type: 'COMMON' | 'PERSONAL'
-}
+import { User } from '../src/types/User'
 
 interface Props {
     user: User

@@ -30,6 +30,10 @@ export const UpdateProfile = () => {
     name: Yup.string().required("Nome obrigatório"),
     email: Yup.string().required("E-mail obrigatório").email("E-mail inválido"),
     password: Yup.string().required("Senha obrigatória"),
+    password_confirmation: Yup.string().oneOf(
+      [Yup.ref('password'),], 
+      'As senhas precisam coincidir'
+    ),
     phone: Yup.string().required("Número de telefone obrigatório"),
     city: Yup.string().required("Cidade obrigatória"),
     street: Yup.string().required("Rua obrigatória"),
@@ -42,8 +46,9 @@ export const UpdateProfile = () => {
     handleSubmit,
     control,
     formState: { errors },
+    register
   } = useForm({
-    resolver: yupResolver(UpdateProfileFormSchema),
+    resolver: yupResolver(UpdateProfileFormSchema)
   });
 
   const handleUpdateForm = (values) => {
@@ -129,13 +134,13 @@ export const UpdateProfile = () => {
               <S.AddressTextContainer>
                 <h2>Endereço:</h2>
               </S.AddressTextContainer>
-              <Input
+              {/* <Input
                 control={control}
                 error={errors.city}
                 name="city"
                 placeholder="Digite sua cidade"
                 icon={FiMapPin}
-              />
+              /> */}
               <Input
                 control={control}
                 error={errors.district}
@@ -170,7 +175,7 @@ export const UpdateProfile = () => {
             <Button
               type="submit"
               text="Salvar alterações"
-              color={colors.button_green}
+              color={colors.primary}
             />
           </S.ButtonsForm>
         </S.Form>
