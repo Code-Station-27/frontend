@@ -10,10 +10,10 @@ export default {
         shape: '#242325',
         inputs: '#222',
 
-        red_light: '#F3BCBD',
-        green_light: '#C4E6CA',
-        red: '#E4696B',
-        green: '#49AB5B',
+        red_light: '#c27879',
+        green_light: '#81b389',
+        red: '#b02c2e',
+        green: '#2b8f3d',
         button_green: "#4EB929"
     }
 }
