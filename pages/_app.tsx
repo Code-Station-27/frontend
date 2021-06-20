@@ -1,4 +1,5 @@
 import { createGlobalStyle, ThemeProvider } from 'styled-components'
+import Modal from 'react-modal'
 
 import { AuthProvider } from '../src/contexts/AuthContext'
 
