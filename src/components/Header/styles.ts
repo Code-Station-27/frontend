@@ -53,7 +53,7 @@ export const UserActions = styled.div`
     }
   }
 
-  a img {
+  img {
     background-size: 52px 52px;
     border: 0;
     border-radius: 50%;
@@ -63,5 +63,6 @@ export const UserActions = styled.div`
     height: 52px;
     width: 52px;
     z-index: 0;
+    cursor: pointer;
   }
 ` 

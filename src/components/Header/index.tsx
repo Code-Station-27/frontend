@@ -28,14 +28,14 @@ export const Header = ({ shouldGoBack }: HeaderProps) => {
       </S.ContainerLogo>
 
       <S.UserActions>
-        <a href="">
+        <Link href="/updateProfile">
           <Image
             src="/images/fake_avatar.jpg"
             alt="Fake Avatar"
             width={30}
             height={30}
           />
-        </a>
+        </Link>
       </S.UserActions>
     </S.Container>
   );
