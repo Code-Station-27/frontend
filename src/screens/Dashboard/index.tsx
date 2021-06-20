@@ -23,13 +23,13 @@ export const Dashboard = () => {
           </S.Aside>
           <S.Main>
             <S.ContentSearch>
-              <span>Buscar personal na minha cidade</span>
-              <Input
-                name="input-personal"
-                type="text"
-                placeholder="Digite o nome do personal"
-                icon={FiSearch}
-              />
+                <span>Buscar personal na minha cidade</span>
+                {/* <Input 
+                  name="input-personal" 
+                  type="text" 
+                  placeholder="Digite o nome do personal" 
+                  icon={FiSearch}
+                /> */}
             </S.ContentSearch>
             <S.ContentPersonals>
               <PersonalCard

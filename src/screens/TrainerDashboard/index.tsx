@@ -1,10 +1,13 @@
 import { Header } from '../../components/Header'
 import { Table } from '../../components/Table'
 import { TrainerTable } from '../../components/TrainerTable'
+import { useAuth } from '../../contexts/AuthContext'
 
 import * as S from './styles'
 
 export const TrainerDashboard = () => {
+    const { user } = useAuth()
+
     return(
         <S.Container>
             <Header/>
