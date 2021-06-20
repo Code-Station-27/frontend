@@ -33,6 +33,10 @@ const signupFormSchema = Yup.object().shape({
     name: Yup.string().required('Nome obrigatório'),
     email: Yup.string().required('E-mail obrigatório').email('E-mail inválido'),
     password: Yup.string().required('Senha obrigatória'),
+    password_confirmation: Yup.string().required('Confirme a senha').oneOf(
+        [Yup.ref('password'),], 
+        'As senhas precisam coincidir'
+    ),
     phone: Yup.string().required('Número de telefone obrigatório'),
     city: Yup.string().required('Cidade obrigatória'),
     street: Yup.string().required('Rua obrigatória'),
@@ -135,14 +139,14 @@ export const SignUp = () => {
                         control={control}
                         error={errors.password}
                     />
-                    {/* <Input 
-                        name="password-confirmation" 
+                    <Input 
+                        name="password_confirmation" 
                         type="password" 
                         placeholder="Confirme sua senha"
                         icon={FiLock}
                         control={control}
-                        error={errors.password}
-                    /> */}
+                        error={errors.password_confirmation}
+                    />
                 </div>
                 <S.AddressTextContainer>
                     <h2>Endereço</h2>

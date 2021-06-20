@@ -9,13 +9,13 @@ export const Container = styled.div`
         border: 0;
         width: 100%;
         height: 60px;
-        border-radius: 0.8rem;
+        border-radius: 12px;
         background-color: ${({theme})=>theme.colors.inputs};
         outline: 0;
-        font: 1.6rem;
+        font: 24px;
         color: #ccc;
-        padding: 0 1.6rem;
-        margin-top: 0.8rem;
+        padding: 0 24px;
+        margin-top: 12px;
     }
 `
 
