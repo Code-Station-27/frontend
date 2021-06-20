@@ -1,38 +1,27 @@
-import Modal from 'react-modal'
-
+import React, { useEffect, useState } from "react";
+import { FiX } from "react-icons/fi";
+import { Button } from "../../components/Button";
+import { GenericModal } from "../../components/GenericModal";
+import { Header } from "../../components/Header";
+import { Table } from "../../components/Table";
+import { api } from "../../services/api";
 import * as S from "./styles";
 
-import { Table } from "../../components/Table";
-import { Header } from "../../components/Header";
-import React, { useState } from "react";
-import { GenericModal } from "../../components/GenericModal";
-import { Button } from "../../components/Button";
-import { FiX } from "react-icons/fi";
-
-interface handleCiclkItemProps {
-  weekday: string
-  hour: string
+interface handleClickItemProps {
+  weekday: string;
+  hour: string;
+  hourIndex: number;
+  weekdayIndex: number;
 }
 
-export const Trainer = () => {
+export const Trainer = ({ id }) => {
   const [modalOpen, setModalOpen] = useState(false);
 
-  const [selectedWeekDay, setSelectedWeekDay] = useState('')
-  const [selectedHour, setSelectedHour] = useState('')
-
-  const handleOpenModal = () => {
-    setModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setModalOpen(false);
-  };
-
-  const handleClickItem = ({weekday, hour}: handleCiclkItemProps) => {
-    setSelectedWeekDay(weekday)
-    setSelectedHour(hour)
-    handleOpenModal()
-  }
+  const [trainerData, setTrainerData] = useState(null);
+  const [selectedWeekDay, setSelectedWeekDay] = useState("");
+  const [selectedHour, setSelectedHour] = useState("");
+  const [weekdayIndex, setWeekdayIndex] = useState(null);
+  const [hourIndex, setHourIndex] = useState(null);
 
   const personal = {
     name: "Filipe",
@@ -42,118 +31,165 @@ export const Trainer = () => {
 
   const days = [
     {
-      hours : [
+      hours: [
         null,
         null,
-        {isAvailable: true},
-        {isAvailable: true},
-        {isAvailable: false},
-        {isAvailable: true},
+        { isAvailable: true },
+        { isAvailable: true },
+        { isAvailable: false },
+        { isAvailable: true },
         null,
         null,
-        {isAvailable: true},
-        {isAvailable: true},
-        {isAvailable: false},
-        {isAvailable: false},
-      ]
+        { isAvailable: true },
+        { isAvailable: true },
+        { isAvailable: false },
+        { isAvailable: false },
+      ],
     },
     {
-      hours : [
-        {isAvailable: true},
-        {isAvailable: false},
-        {isAvailable: false},
-        {isAvailable: true},
-        {isAvailable: true},
+      hours: [
+        { isAvailable: true },
+        { isAvailable: false },
+        { isAvailable: false },
+        { isAvailable: true },
+        { isAvailable: true },
         null,
-        {isAvailable: false},
-        {isAvailable: false},
-        {isAvailable: true},
-        {isAvailable: true},
+        { isAvailable: false },
+        { isAvailable: false },
+        { isAvailable: true },
+        { isAvailable: true },
         null,
         null,
-      ]
+      ],
     },
     {
-      hours : [
+      hours: [
         null,
-        {isAvailable: false},
-        {isAvailable: false},
-        {isAvailable: true},
-        {isAvailable: true},
+        { isAvailable: false },
+        { isAvailable: false },
+        { isAvailable: true },
+        { isAvailable: true },
         null,
         null,
         null,
-        {isAvailable: false},
-        {isAvailable: false},
-        {isAvailable: true},
-        {isAvailable: true},
-      ]
+        { isAvailable: false },
+        { isAvailable: false },
+        { isAvailable: true },
+        { isAvailable: true },
+      ],
     },
     {
-      hours : [
+      hours: [
         null,
         null,
-        {isAvailable: true},
-        {isAvailable: true},
-        {isAvailable: false},
-        {isAvailable: true},
+        { isAvailable: true },
+        { isAvailable: true },
+        { isAvailable: false },
+        { isAvailable: true },
         null,
         null,
-        {isAvailable: true},
-        {isAvailable: true},
-        {isAvailable: false},
-        {isAvailable: false},
-      ]
+        { isAvailable: true },
+        { isAvailable: true },
+        { isAvailable: false },
+        { isAvailable: false },
+      ],
     },
     {
-      hours : [
-        {isAvailable: true},
-        {isAvailable: false},
-        {isAvailable: false},
-        {isAvailable: true},
-        {isAvailable: true},
+      hours: [
+        { isAvailable: true },
+        { isAvailable: false },
+        { isAvailable: false },
+        { isAvailable: true },
+        { isAvailable: true },
         null,
         null,
         null,
-        {isAvailable: true},
-        {isAvailable: true},
-        {isAvailable: false},
-        {isAvailable: false},
-      ]
+        { isAvailable: true },
+        { isAvailable: true },
+        { isAvailable: false },
+        { isAvailable: false },
+      ],
     },
     {
-      hours : [
+      hours: [
         null,
-        {isAvailable: false},
-        {isAvailable: false},
-        {isAvailable: true},
-        {isAvailable: true},
+        { isAvailable: false },
+        { isAvailable: false },
+        { isAvailable: true },
+        { isAvailable: true },
         null,
-        {isAvailable: true},
-        {isAvailable: true},
-        {isAvailable: false},
+        { isAvailable: true },
+        { isAvailable: true },
+        { isAvailable: false },
         null,
-        {isAvailable: true},
-        {isAvailable: true},
-      ]
+        { isAvailable: true },
+        { isAvailable: true },
+      ],
     },
     {
-      hours : [
+      hours: [
         null,
-        {isAvailable: false},
-        {isAvailable: false},
-        {isAvailable: true},
-        {isAvailable: true},
+        { isAvailable: false },
+        { isAvailable: false },
+        { isAvailable: true },
+        { isAvailable: true },
         null,
         null,
         null,
-        {isAvailable: false},
-        {isAvailable: false},
-        {isAvailable: true},
-        {isAvailable: true},
-      ]
-    }
-  ]
+        { isAvailable: false },
+        { isAvailable: false },
+        { isAvailable: true },
+        { isAvailable: true },
+      ],
+    },
+  ];
+
+  const handleOpenModal = () => {
+    setModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalOpen(false);
+  };
+
+  const handleClickItem = ({
+    weekday,
+    hour,
+    weekdayIndex,
+    hourIndex,
+  }: handleClickItemProps) => {
+    setSelectedWeekDay(weekday);
+    setSelectedHour(hour);
+    setWeekdayIndex(weekdayIndex);
+    setHourIndex(hourIndex);
+    handleOpenModal();
+  };
+
+  const handleCreateTraining = async () => {
+    await api
+      .post("/trainings", {
+        personal_id: "b599802a-1bea-4e6e-9794-637981c660bd",
+        day: weekdayIndex,
+        hour: hourIndex,
+      })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => console.log('err:', err));
+  };
+
+  const getTrainingOfPersonal = async () => {
+    await api
+      .get(`/trainings?b599802a-1bea-4e6e-9794-637981c660bd`)
+      .then((res) => {
+        setTrainerData(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  useEffect(() => {
+    getTrainingOfPersonal();
+  }, []);
 
   return (
     <S.Container>
@@ -175,10 +211,12 @@ export const Trainer = () => {
             maxime eligendi.
           </div>
         </S.UserInfo>
-        <Table onItemClick={handleClickItem} days={days}/>
+
+        <Table onItemClick={handleClickItem} days={days} trainerData={trainerData} />
+
       </S.Content>
 
-      <GenericModal isOpen={modalOpen} onRequestClose={handleCloseModal}>
+      <GenericModal ariaHideApp={true} isOpen={modalOpen}>
         <S.ContainerIcons>
           <FiX size={32} onClick={handleCloseModal} />
         </S.ContainerIcons>
@@ -187,7 +225,11 @@ export const Trainer = () => {
           <p>
             {selectedWeekDay} - {selectedHour}
           </p>
-          <Button text="Confirmar" type="button" onClick={handleCloseModal} />
+          <Button
+            text="Confirmar"
+            type="button"
+            onClick={handleCreateTraining}
+          />
         </S.ModalContent>
       </GenericModal>
     </S.Container>
