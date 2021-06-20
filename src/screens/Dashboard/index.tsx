@@ -8,7 +8,7 @@ import { PersonalCard } from "../../components/PersonalCard";
 
 import * as S from "./styles";
 import { api } from "../../services/api";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
 // import { FiSearch } from 'react-icons/fi'
 
@@ -17,6 +17,8 @@ interface apiResponse{
 }
 
 export const Dashboard = () => {
+
+  const [trainers, setTrainers] = useState([])
 
   const { user } = useAuth()
 
@@ -43,8 +45,12 @@ export const Dashboard = () => {
         page: 1,
         amountPerPage: 10
       }
-    }).then(response => console.log(response.data))
+    }).then(response => { console.log(response.data); setTrainers(response.data)})
   },[user])
+
+  useEffect(()=>{
+    api.get('/trainings/me').then(response => console.log(response.data))
+  })
 
   /* const {
     data,
@@ -59,11 +65,11 @@ export const Dashboard = () => {
     {
       getNextPageParam: lastPage => lastPage.after ?? null,
     }
-  ) */
+  )
   
-  /* useEffect(()=>{
+  useEffect(()=>{
     console.log('react query',data)
-  },[]) */
+  },[data]) */
 
   return (
     <>
@@ -89,78 +95,18 @@ export const Dashboard = () => {
                 /> */}
             </S.ContentSearch>
             <S.ContentPersonals>
-              <Link href={`/trainer/${1}`}>
-                <a>
-                  <PersonalCard
-                    rating={5}
-                    name="Dan"
-                    description="Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
-                  />
-                </a>
-              </Link>
-              <Link href={`/trainer/${2}`}>
-                <a>
-                  <PersonalCard
-                    rating={5}
-                    name="Dan"
-                    description="Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
-                  />
-                </a>
-              </Link>{" "}
-              <Link href={`/trainer/${3}`}>
-                <a>
-                  <PersonalCard
-                    rating={5}
-                    name="Dan"
-                    description="Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
-                  />
-                </a>
-              </Link>{" "}
-              <Link href={`/trainer/${4}`}>
-                <a>
-                  <PersonalCard
-                    rating={5}
-                    name="Dan"
-                    description="Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
-                  />
-                </a>
-              </Link>{" "}
-              <Link href={`/trainer/${5}`}>
-                <a>
-                  <PersonalCard
-                    rating={5}
-                    name="Dan"
-                    description="Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
-                  />
-                </a>
-              </Link>{" "}
-              <Link href={`/trainer/${6}`}>
-                <a>
-                  <PersonalCard
-                    rating={5}
-                    name="Dan"
-                    description="Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
-                  />
-                </a>
-              </Link>{" "}
-              <Link href={`/trainer/${7}`}>
-                <a>
-                  <PersonalCard
-                    rating={5}
-                    name="Dan"
-                    description="Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
-                  />
-                </a>
-              </Link>{" "}
-              <Link href={`/trainer/${8}`}>
-                <a>
-                  <PersonalCard
-                    rating={5}
-                    name="Dan"
-                    description="Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
-                  />
-                </a>
-              </Link>
+              {trainers.map(trainer => (
+                <Link key={trainer.id} href={`/trainer/${trainer.user.id}`}>
+                  <a>
+                    <PersonalCard
+                      rating={5}
+                      name={trainer.user.name}
+                      description={"Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"}
+                    />
+                  </a>
+                </Link>
+              ))}
+              
             </S.ContentPersonals>
           </S.Main>
         </S.Content>
