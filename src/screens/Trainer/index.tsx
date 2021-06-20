@@ -1,3 +1,5 @@
+import Modal from 'react-modal'
+
 import * as S from "./styles";
 
 import { Table } from "../../components/Table";
@@ -7,8 +9,16 @@ import { GenericModal } from "../../components/GenericModal";
 import { Button } from "../../components/Button";
 import { FiX } from "react-icons/fi";
 
+interface handleCiclkItemProps {
+  weekday: string
+  hour: string
+}
+
 export const Trainer = () => {
   const [modalOpen, setModalOpen] = useState(false);
+
+  const [selectedWeekDay, setSelectedWeekDay] = useState('')
+  const [selectedHour, setSelectedHour] = useState('')
 
   const handleOpenModal = () => {
     setModalOpen(true);
@@ -17,6 +27,12 @@ export const Trainer = () => {
   const handleCloseModal = () => {
     setModalOpen(false);
   };
+
+  const handleClickItem = ({weekday, hour}: handleCiclkItemProps) => {
+    setSelectedWeekDay(weekday)
+    setSelectedHour(hour)
+    handleOpenModal()
+  }
 
   const personal = {
     name: "Filipe",
@@ -159,8 +175,7 @@ export const Trainer = () => {
             maxime eligendi.
           </div>
         </S.UserInfo>
-        <Table days={days}/>
-        <button onClick={handleOpenModal}>Abrir Modal</button>
+        <Table onItemClick={handleClickItem} days={days}/>
       </S.Content>
 
       <GenericModal isOpen={modalOpen} onRequestClose={handleCloseModal}>
@@ -170,7 +185,7 @@ export const Trainer = () => {
         <S.ModalContent>
           <h1>Deseja marcar aula com {personal.name}?</h1>
           <p>
-            {personal.weekdays} - {personal.hour}
+            {selectedWeekDay} - {selectedHour}
           </p>
           <Button text="Confirmar" type="button" onClick={handleCloseModal} />
         </S.ModalContent>
