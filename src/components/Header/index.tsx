@@ -31,12 +31,14 @@ export const Header = ({ shouldGoBack }: HeaderProps) => {
 
       <S.UserActions>
         <Link href="/updateProfile">
-          <Image
-            src="/images/fake_avatar.jpg"
-            alt="Fake Avatar"
-            width={30}
-            height={30}
-          />
+          <a>
+            <Image
+              src="/images/fake_avatar.jpg"
+              alt="Fake Avatar"
+              width={30}
+              height={30}
+            />
+          </a>
         </Link>
         <FiLogOut size={28} onClick={signOut} />
       </S.UserActions>
