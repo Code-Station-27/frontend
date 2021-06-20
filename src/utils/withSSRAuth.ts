@@ -14,14 +14,14 @@ export function withSSRAuth<P>(fn: GetServerSideProps<P>, options?: WithSSROptio
 
         const token = cookies['perfit.token']
 
-        /* if(!token){
+        if(!token){
             return {
                 redirect: {
                     destination: '/',
                     permanent: false
                 }
             }
-        } */
+        }
 
         try{
             return await fn(ctx)
@@ -30,12 +30,12 @@ export function withSSRAuth<P>(fn: GetServerSideProps<P>, options?: WithSSROptio
                 destroyCookie(ctx, 'perfit.token')
                 destroyCookie(ctx, 'perfit.refreshToken')
 
-                /* return {
+                return {
                     redirect: {
                     destination: '/',
                     permanent: false
                     }
-                } */
+                }
             }
 
             
