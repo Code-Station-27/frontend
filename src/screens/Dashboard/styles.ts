@@ -71,6 +71,11 @@ export const ContentPersonals = styled.div`
   @media (max-width: 800px){
     grid-template-columns: 1fr;
   }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 `
 
 export const Aside = styled.aside`

@@ -1,15 +1,9 @@
 import { GetServerSideProps } from 'next'
-import { useRouter } from 'next/router'
 import { parseCookies } from 'nookies'
-import { useEffect } from 'react'
-
-import { useAuth } from '../src/contexts/AuthContext'
-
 import { Dashboard } from '../src/screens/Dashboard'
 import { TrainerDashboard } from '../src/screens/TrainerDashboard'
-import { withSSRAuth } from '../src/utils/withSSRAuth'
-
 import { User } from '../src/types/User'
+import { withSSRAuth } from '../src/utils/withSSRAuth'
 
 interface Props {
     user: User

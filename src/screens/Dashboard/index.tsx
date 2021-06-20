@@ -1,11 +1,9 @@
-import * as S from "./styles";
-
-import { FiSearch } from "react-icons/fi";
-
+import Link from "next/link";
 import { Header } from "../../components/Header";
-import { PersonalCard } from "../../components/PersonalCard";
-import { Input } from "../../components/Input";
 import { MyTrainersCard } from "../../components/MyTrainersCard";
+import { PersonalCard } from "../../components/PersonalCard";
+import * as S from "./styles";
+// import { FiSearch } from 'react-icons/fi'
 
 export const Dashboard = () => {
   return (
@@ -23,8 +21,8 @@ export const Dashboard = () => {
           </S.Aside>
           <S.Main>
             <S.ContentSearch>
-                <span>Buscar personal na minha cidade</span>
-                {/* <Input 
+              <span>Buscar personal na minha cidade</span>
+              {/* <Input 
                   name="input-personal" 
                   type="text" 
                   placeholder="Digite o nome do personal" 
@@ -32,46 +30,78 @@ export const Dashboard = () => {
                 /> */}
             </S.ContentSearch>
             <S.ContentPersonals>
-              <PersonalCard
-                rating={5}
-                name="Daniel Filgueira"
-                description="Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
-              />
-              <PersonalCard
-                rating={5}
-                name="Daniel Filgueira"
-                description="Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
-              />
-              <PersonalCard
-                rating={5}
-                name="Daniel Filgueira"
-                description="Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
-              />
-              <PersonalCard
-                rating={5}
-                name="Daniel Filgueira"
-                description="Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
-              />
-              <PersonalCard
-                rating={5}
-                name="Daniel Filgueira"
-                description="Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
-              />
-              <PersonalCard
-                rating={5}
-                name="Daniel Filgueira"
-                description="Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
-              />
-              <PersonalCard
-                rating={5}
-                name="Daniel Filgueira"
-                description="Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
-              />
-              <PersonalCard
-                rating={5}
-                name="Daniel Filgueira"
-                description="Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
-              />
+              <Link href={`/trainer/${1}`}>
+                <a>
+                  <PersonalCard
+                    rating={5}
+                    name="Dan"
+                    description="Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
+                  />
+                </a>
+              </Link>
+              <Link href={`/trainer/${2}`}>
+                <a>
+                  <PersonalCard
+                    rating={5}
+                    name="Dan"
+                    description="Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
+                  />
+                </a>
+              </Link>{" "}
+              <Link href={`/trainer/${3}`}>
+                <a>
+                  <PersonalCard
+                    rating={5}
+                    name="Dan"
+                    description="Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
+                  />
+                </a>
+              </Link>{" "}
+              <Link href={`/trainer/${4}`}>
+                <a>
+                  <PersonalCard
+                    rating={5}
+                    name="Dan"
+                    description="Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
+                  />
+                </a>
+              </Link>{" "}
+              <Link href={`/trainer/${5}`}>
+                <a>
+                  <PersonalCard
+                    rating={5}
+                    name="Dan"
+                    description="Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
+                  />
+                </a>
+              </Link>{" "}
+              <Link href={`/trainer/${6}`}>
+                <a>
+                  <PersonalCard
+                    rating={5}
+                    name="Dan"
+                    description="Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
+                  />
+                </a>
+              </Link>{" "}
+              <Link href={`/trainer/${7}`}>
+                <a>
+                  <PersonalCard
+                    rating={5}
+                    name="Dan"
+                    description="Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
+                  />
+                </a>
+              </Link>{" "}
+              <Link href={`/trainer/${8}`}>
+                <a>
+                  <PersonalCard
+                    rating={5}
+                    name="Dan"
+                    description="Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
+                  />
+                </a>
+              </Link>
             </S.ContentPersonals>
           </S.Main>
         </S.Content>

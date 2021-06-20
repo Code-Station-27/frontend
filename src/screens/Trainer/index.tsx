@@ -141,7 +141,7 @@ export const Trainer = () => {
 
   return (
     <S.Container>
-      <Header />
+      <Header shouldGoBack />
       <S.Content>
         <S.UserInfo>
           <header>

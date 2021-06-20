@@ -1,4 +1,4 @@
-import { Trainer } from "../src/screens/Trainer";
+import { Trainer } from "../../src/screens/Trainer";
 
 export default function TrainerPage(){
     return(
