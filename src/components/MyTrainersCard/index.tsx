@@ -37,7 +37,7 @@ export const MyTrainersCard = ({
             <strong>Quinta feira</strong>
             <p>10:00 - 10:45</p>
           </div>
-          <FiXCircle size={24} color={colors.red}/>
+          <FiXCircle size={24} color={colors.red} onClick={()=>{}}/>
         </S.MyTrainerLesson>
       </S.ContentInfos>
     </S.Container>
