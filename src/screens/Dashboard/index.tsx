@@ -1,6 +1,6 @@
 import * as S from "./styles";
 
-import { FiSearch } from 'react-icons/fi'
+import { FiSearch } from "react-icons/fi";
 
 import { Header } from "../../components/Header";
 import { PersonalCard } from "../../components/PersonalCard";
@@ -10,8 +10,8 @@ import { MyTrainersCard } from "../../components/MyTrainersCard";
 export const Dashboard = () => {
   return (
     <>
+      <Header />
       <S.Container>
-        <Header />
         <S.Content>
           <S.Aside>
             <span>Meus agendamentos</span>
