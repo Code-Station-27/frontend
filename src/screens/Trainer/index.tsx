@@ -180,8 +180,9 @@ export const Trainer = ({ id }) => {
 
   const getTrainingOfPersonal = async () => {
     await api
-      .get(`/trainings?b599802a-1bea-4e6e-9794-637981c660bd`)
+      .get(`/trainings?personal_id=b599802a-1bea-4e6e-9794-637981c660bd`)
       .then((res) => {
+        console.log()
         setTrainerData(res.data);
       })
       .catch((err) => console.log(err));

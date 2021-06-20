@@ -16,7 +16,15 @@ interface apiResponse{
 
 }
 
+interface MyLessons {
+  [key: string]: {
+    name: string
+    lessons: {day: number, hour: number}[]
+  }
+}
+
 export const Dashboard = () => {
+  const [myLessons, setMyLessons] = useState<MyLessons[]>([])
 
   const [trainers, setTrainers] = useState([])
 
@@ -49,8 +57,25 @@ export const Dashboard = () => {
   },[user])
 
   useEffect(()=>{
-    api.get('/trainings/me').then(response => console.log(response.data))
-  })
+    api.get('/trainings/me').then(response => {
+      const formattedResponse = []
+
+      response.data.forEach(res => {
+        if(!formattedResponse[res.personal_id]){
+          formattedResponse[res.personal_id] = {
+            name: res.personal.user.name,
+            lessons: [{day: res.day, hour: res.hour}]
+          }
+        }else{
+          formattedResponse[res.personal_id].lessons.push(
+            {day: res.day, hour: res.hour}
+          )
+        }
+      })
+
+      setMyLessons(formattedResponse)
+    })
+  },[])
 
   /* const {
     data,
@@ -78,11 +103,13 @@ export const Dashboard = () => {
         <S.Content>
           <S.Aside>
             <span>Meus agendamentos</span>
-            <MyTrainersCard
-              rating={5}
-              name="Daniel Filgueira"
-              description="Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
-            />
+            {Object.keys(myLessons).map((key, index) => (
+              <MyTrainersCard
+                name={myLessons[key].name}
+                lessons={myLessons[key].lessons}
+              />
+            ))}
+            
           </S.Aside>
           <S.Main>
             <S.ContentSearch>
