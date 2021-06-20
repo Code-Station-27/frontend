@@ -116,19 +116,13 @@ export const Dashboard = () => {
           <S.Main>
             <S.ContentSearch>
               <span>Buscar personal na minha cidade</span>
-              {/* <Input 
-                  name="input-personal" 
-                  type="text" 
-                  placeholder="Digite o nome do personal" 
-                  icon={FiSearch}
-                /> */}
             </S.ContentSearch>
             {trainers.length === 0 ? (
               <S.InfoContainer>
                 <h1>
                   Ops! Parece que não temos nenhum personal em sua cidade.
                 </h1>
-                <p>Volta mais tarde para verificar se há algum personal.</p>
+                <p>Volte mais tarde para verificar se há algum personal.</p>
               </S.InfoContainer>
             ) : (
               <S.ContentPersonals>
