@@ -14,6 +14,15 @@ export const Container = styled.header`
 
 ` 
 
+export const ContainerLogo = styled.div`
+  display: flex;
+  align-items: center;
+
+  > svg {
+    margin-right: 16px;
+  }
+`
+
 export const Logo = styled.div`
   height: 40px;
 
