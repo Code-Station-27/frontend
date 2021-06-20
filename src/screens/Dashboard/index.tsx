@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { DefaultTheme } from "styled-components";
-import { useInfiniteQuery } from 'react-query'
+import { useInfiniteQuery } from "react-query";
 
 import { Header } from "../../components/Header";
 import { MyTrainersCard } from "../../components/MyTrainersCard";
@@ -12,45 +12,47 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
 // import { FiSearch } from 'react-icons/fi'
 
-interface apiResponse{
-
-}
+interface apiResponse {}
 
 export const Dashboard = () => {
+  const [trainers, setTrainers] = useState([]);
 
-  const [trainers, setTrainers] = useState([])
+  const { user } = useAuth();
 
-  const { user } = useAuth()
+  console.log(user);
 
-  async function fetchTrainer({
-    pageParam = null,
-  }) {
+  async function fetchTrainer({ pageParam = null }) {
     const { data } = await api.get(`/personal`, {
       params: {
         city: user.city,
         page: 1,
-        amountPerPage: 10
-      }
-    })
+        amountPerPage: 10,
+      },
+    });
 
-    return data
+    return data;
   }
 
-  useEffect(()=>{
-    console.log(user.city)
+  useEffect(() => {
+    console.log(user.city);
 
-    api.get(`/personal`, {
-      params: {
-        city: user.city.id,
-        page: 1,
-        amountPerPage: 10
-      }
-    }).then(response => { console.log(response.data); setTrainers(response.data)})
-  },[user])
+    api
+      .get(`/personal`, {
+        params: {
+          city: user.city.id,
+          page: 1,
+          amountPerPage: 10,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+        setTrainers(response.data);
+      });
+  }, [user]);
 
-  useEffect(()=>{
-    api.get('/trainings/me').then(response => console.log(response.data))
-  })
+  useEffect(() => {
+    api.get("/trainings/me").then((response) => console.log(response.data));
+  });
 
   /* const {
     data,
@@ -74,43 +76,69 @@ export const Dashboard = () => {
   return (
     <>
       <Header />
-      <S.Container>
-        <S.Content>
-          <S.Aside>
-            <span>Meus agendamentos</span>
-            <MyTrainersCard
-              rating={5}
-              name="Daniel Filgueira"
-              description="Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
-            />
-          </S.Aside>
-          <S.Main>
-            <S.ContentSearch>
-              <span>Buscar personal na minha cidade</span>
-              {/* <Input 
+      {user.type === "COMMON" ? (
+        <S.Container>
+          <S.Content>
+            <S.Aside>
+              <span>Meus agendamentos</span>
+              <MyTrainersCard
+                rating={5}
+                name="Daniel Filgueira"
+                description="Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
+              />
+            </S.Aside>
+            <S.Main>
+              <S.ContentSearch>
+                <span>Buscar personal na minha cidade</span>
+                {/* <Input 
                   name="input-personal" 
                   type="text" 
                   placeholder="Digite o nome do personal" 
                   icon={FiSearch}
                 /> */}
-            </S.ContentSearch>
-            <S.ContentPersonals>
-              {trainers.map(trainer => (
-                <Link key={trainer.id} href={`/trainer/${trainer.user.id}`}>
-                  <a>
-                    <PersonalCard
-                      rating={5}
-                      name={trainer.user.name}
-                      description={"Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"}
-                    />
-                  </a>
-                </Link>
-              ))}
-              
-            </S.ContentPersonals>
-          </S.Main>
-        </S.Content>
-      </S.Container>
+              </S.ContentSearch>
+              <S.ContentPersonals>
+                {trainers.map((trainer) => (
+                  <Link key={trainer.id} href={`/trainer/${trainer.user.id}`}>
+                    <a>
+                      <PersonalCard
+                        rating={5}
+                        name={trainer.user.name}
+                        description={
+                          "Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
+                        }
+                      />
+                    </a>
+                  </Link>
+                ))}
+              </S.ContentPersonals>
+            </S.Main>
+          </S.Content>
+        </S.Container>
+      ) : (
+        <S.Container>
+          <S.Content>
+            <h1>Meus agendamentos</h1>
+            <S.Main>
+              <S.ContentPersonals>
+                {trainers.map((trainer) => (
+                  <Link key={trainer.id} href={`/trainer/${trainer.user.id}`}>
+                    <a>
+                      <PersonalCard
+                        rating={5}
+                        name={trainer.user.name}
+                        description={
+                          "Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
+                        }
+                      />
+                    </a>
+                  </Link>
+                ))}
+              </S.ContentPersonals>
+            </S.Main>
+          </S.Content>
+        </S.Container>
+      )}
     </>
   );
 };
