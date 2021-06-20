@@ -24,6 +24,121 @@ export const Trainer = () => {
     hour: "08:00AM",
   };
 
+  const days = [
+    {
+      hours : [
+        null,
+        null,
+        {isAvailable: true},
+        {isAvailable: true},
+        {isAvailable: false},
+        {isAvailable: true},
+        null,
+        null,
+        {isAvailable: true},
+        {isAvailable: true},
+        {isAvailable: false},
+        {isAvailable: false},
+      ]
+    },
+    {
+      hours : [
+        {isAvailable: true},
+        {isAvailable: false},
+        {isAvailable: false},
+        {isAvailable: true},
+        {isAvailable: true},
+        null,
+        {isAvailable: false},
+        {isAvailable: false},
+        {isAvailable: true},
+        {isAvailable: true},
+        null,
+        null,
+      ]
+    },
+    {
+      hours : [
+        null,
+        {isAvailable: false},
+        {isAvailable: false},
+        {isAvailable: true},
+        {isAvailable: true},
+        null,
+        null,
+        null,
+        {isAvailable: false},
+        {isAvailable: false},
+        {isAvailable: true},
+        {isAvailable: true},
+      ]
+    },
+    {
+      hours : [
+        null,
+        null,
+        {isAvailable: true},
+        {isAvailable: true},
+        {isAvailable: false},
+        {isAvailable: true},
+        null,
+        null,
+        {isAvailable: true},
+        {isAvailable: true},
+        {isAvailable: false},
+        {isAvailable: false},
+      ]
+    },
+    {
+      hours : [
+        {isAvailable: true},
+        {isAvailable: false},
+        {isAvailable: false},
+        {isAvailable: true},
+        {isAvailable: true},
+        null,
+        null,
+        null,
+        {isAvailable: true},
+        {isAvailable: true},
+        {isAvailable: false},
+        {isAvailable: false},
+      ]
+    },
+    {
+      hours : [
+        null,
+        {isAvailable: false},
+        {isAvailable: false},
+        {isAvailable: true},
+        {isAvailable: true},
+        null,
+        {isAvailable: true},
+        {isAvailable: true},
+        {isAvailable: false},
+        null,
+        {isAvailable: true},
+        {isAvailable: true},
+      ]
+    },
+    {
+      hours : [
+        null,
+        {isAvailable: false},
+        {isAvailable: false},
+        {isAvailable: true},
+        {isAvailable: true},
+        null,
+        null,
+        null,
+        {isAvailable: false},
+        {isAvailable: false},
+        {isAvailable: true},
+        {isAvailable: true},
+      ]
+    }
+  ]
+
   return (
     <S.Container>
       <Header />
@@ -44,7 +159,7 @@ export const Trainer = () => {
             maxime eligendi.
           </div>
         </S.UserInfo>
-        <Table />
+        <Table days={days}/>
         <button onClick={handleOpenModal}>Abrir Modal</button>
       </S.Content>
 

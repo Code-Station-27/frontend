@@ -51,7 +51,10 @@ export const Body = styled.div`
     gap: 16px;
 
     strong{
-        margin: auto 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 38px;
     }
 
     @media (max-width: 900px){

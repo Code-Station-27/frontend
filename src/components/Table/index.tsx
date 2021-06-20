@@ -3,7 +3,19 @@ import { useViewport } from '../../hooks/useViewport'
 import { TableItem } from '../TableItem'
 import * as S from './styles'
 
-export const Table = () => {
+interface Hour {
+    isAvailable: boolean
+}
+
+interface Day {
+    hours: (Hour | null)[]
+}
+
+interface TableProps {
+    days: Day[]
+}
+
+export const Table: React.FC<TableProps> = ({days}) => {
     const { width } = useViewport()
 
     const [selectedDay, setSelectedDay] = useState(0)
@@ -39,24 +51,41 @@ export const Table = () => {
         }
     ]
 
+    const hours = [
+        '7:00-7:45',
+        '8:00-8:45',
+        '9:00-9:45',
+        '10:00-10:45',
+        '11:00-11:45',
+        '12:00-12:45',
+        '13:00-13:45',
+        '14:00-14:45',
+        '15:00-15:45',
+        '16:00-16:45',
+        '17:00-17:45',
+        '18:00-18:45',
+
+    ]
+
     return width > 900 ? (
         <S.Container>
             <S.Header>
                 <strong></strong>
-                <strong>Domingo</strong>
-                <strong>Segunda</strong>
-                <strong>Terça</strong>
-                <strong>Quarta</strong>
-                <strong>Quinta</strong>
-                <strong>Sexta</strong>
-                <strong>Sábado</strong>
+                {weekdays.map(day => (
+                    <strong key={day.longName}>{day.longName}</strong>
+                ))}
             </S.Header>
             <S.Body>
-                <strong>7:00 - 7:45</strong> <TableItem isAvailable/> <TableItem isAvailable/> <TableItem isAvailable/> <TableItem isAvailable/> <TableItem isAvailable/> <TableItem isAvailable/> <TableItem isAvailable/>
-                <strong>8:00 - 8:45</strong> <TableItem isAvailable/> <TableItem isAvailable/> <TableItem isAvailable/> <TableItem isAvailable/> <TableItem isAvailable={false}/> <TableItem isAvailable={false}/> <TableItem isAvailable/>
-                <strong>9:00 - 9:45</strong> <TableItem isAvailable/> <TableItem isAvailable={false}/> <TableItem isAvailable/> <TableItem isAvailable/> <TableItem isAvailable/> <TableItem isAvailable/> <TableItem isAvailable/>
-                <strong>10:00 - 10:45</strong> <TableItem isAvailable/> <TableItem isAvailable/> <TableItem isAvailable={false}/> <TableItem isAvailable/> <TableItem isAvailable/> <TableItem isAvailable/> <TableItem isAvailable={false}/>
-                <strong>11:00 - 11:45</strong> <TableItem isAvailable/> <TableItem isAvailable/> <TableItem isAvailable={false}/> <TableItem isAvailable/> <TableItem isAvailable/> <TableItem isAvailable/> <TableItem isAvailable/>
+                {hours.map((hour,hourindex) => (
+                    <>
+                    <strong>{hour}</strong>
+                    {days.map(day => (
+                        day.hours[hourindex]
+                            ? <TableItem isAvailable={day.hours[hourindex].isAvailable}/>
+                            : <div/>
+                    ))}
+                    </>
+                ))}
             </S.Body>
         </S.Container>
     ) : (
@@ -75,11 +104,16 @@ export const Table = () => {
                 
             </S.Header>
             <S.Body>
-                <strong>7:00 - 7:45</strong> <TableItem isAvailable/> 
-                <strong>8:00 - 8:45</strong> <TableItem isAvailable/> 
-                <strong>9:00 - 9:45</strong> <TableItem isAvailable/> 
-                <strong>10:00 - 10:45</strong> <TableItem isAvailable/> 
-                <strong>11:00 - 11:45</strong> <TableItem isAvailable/> 
+                {hours.map((hour,hourindex) => (
+                    <>
+                    <strong>{hour}</strong>
+                    {
+                        days[selectedDay].hours[hourindex]
+                            ? <TableItem isAvailable={days[selectedDay].hours[hourindex].isAvailable}/>
+                            : <div/>
+                    }
+                    </>
+                ))}
             </S.Body>
         </S.Container>
     )
