@@ -38,7 +38,7 @@ export function setupAPIClient(ctx = undefined){
                 token: old_token,
                 refresh_token,
             }).then(response => {
-              const { access_token } = response.data;
+              const { access_token, refresh_token } = response.data;
 
               console.log(access_token, response.data)
 
@@ -47,7 +47,7 @@ export function setupAPIClient(ctx = undefined){
                 path: '/'
               })
     
-              setCookie(ctx, 'perfit.refreshToken', response.data.refreshToken, {
+              setCookie(ctx, 'perfit.refreshToken', refresh_token, {
                 maxAge: 60 * 60 * 24 * 30, // 30 days
                 path: '/'
               })
