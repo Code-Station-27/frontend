@@ -46,14 +46,6 @@ const signupFormSchema = Yup.object().shape({
 })
 
 export const SignUp = () => {
-    const [type, setType] = useState<'COMMON' | 'PERSONAL'>('COMMON')
-
-    const [ufs, setUfs] = useState([])
-    const [selectedUf, setSelectedUf] = useState('')
-
-    const [cities, setCities] = useState([])
-    const [selectedCity, setSelectedCity] = useState('')
-
     const {
         handleSubmit,
         formState: { errors },
@@ -64,6 +56,14 @@ export const SignUp = () => {
       })
 
     const { signUp } = useAuth()
+
+    const [type, setType] = useState<'COMMON' | 'PERSONAL'>('COMMON')
+
+    const [ufs, setUfs] = useState([])
+    const [selectedUf, setSelectedUf] = useState('')
+
+    const [cities, setCities] = useState([])
+    const [selectedCity, setSelectedCity] = useState('')
 
     const handleSignUp: SubmitHandler<SignupData> = async (values) => {
         console.log(values)

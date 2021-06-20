@@ -13,9 +13,10 @@ interface Day {
 
 interface TableProps {
     days: Day[]
+    onItemClick: ({weekday, hour})=>void
 }
 
-export const Table: React.FC<TableProps> = ({days}) => {
+export const Table: React.FC<TableProps> = ({days, onItemClick}) => {
     const { width } = useViewport()
 
     const [selectedDay, setSelectedDay] = useState(0)
@@ -67,6 +68,10 @@ export const Table: React.FC<TableProps> = ({days}) => {
 
     ]
 
+    const handleItemClick = (isAvailable: boolean, weekday: string, hour: string) => {
+        if(isAvailable) onItemClick({weekday, hour})
+    }
+
     return width > 900 ? (
         <S.Container>
             <S.Header>
@@ -78,12 +83,24 @@ export const Table: React.FC<TableProps> = ({days}) => {
             <S.Body>
                 {hours.map((hour,hourindex) => (
                     <>
-                    <strong>{hour}</strong>
-                    {days.map(day => (
-                        day.hours[hourindex]
-                            ? <TableItem isAvailable={day.hours[hourindex].isAvailable}/>
-                            : <div/>
-                    ))}
+                    <strong key={hour}>{hour}</strong>
+                    {days.map((day, dayIndex) => {
+                        const isAvailable = day.hours[hourindex] 
+                            ? day.hours[hourindex].isAvailable
+                            : false
+
+                        return (
+                            day.hours[hourindex]
+                                ? <TableItem 
+                                    onClick={()=>handleItemClick(
+                                        isAvailable, 
+                                        weekdays[dayIndex].longName, 
+                                        hours[hourindex]
+                                    )} 
+                                    isAvailable={isAvailable}
+                                />: <div/>
+                        )
+                    })}
                     </>
                 ))}
             </S.Body>
@@ -106,11 +123,17 @@ export const Table: React.FC<TableProps> = ({days}) => {
             <S.Body>
                 {hours.map((hour,hourindex) => (
                     <>
-                    <strong>{hour}</strong>
-                    {
+                    <strong key={hour}>{hour}</strong>
+                    {   
                         days[selectedDay].hours[hourindex]
-                            ? <TableItem isAvailable={days[selectedDay].hours[hourindex].isAvailable}/>
-                            : <div/>
+                            ? <TableItem 
+                                onClick={()=>handleItemClick(
+                                    days[selectedDay].hours[hourindex].isAvailable,
+                                    weekdays[selectedDay].longName, 
+                                    hours[hourindex]
+                                )} 
+                                isAvailable={days[selectedDay].hours[hourindex].isAvailable}
+                            /> : <div/>
                     }
                     </>
                 ))}
