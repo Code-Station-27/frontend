@@ -17,16 +17,7 @@ type AuthContextData = {
     user: User
 }
 
-type User = {
-    name: string
-    email: string
-    phone: string
-    city: string
-    street: string
-    number: string
-    district: string
-    type: 'COMMON' | 'PERSONAL'
-}
+import { User } from '../types/User'
 
 const AuthContext = createContext({} as AuthContextData)
 

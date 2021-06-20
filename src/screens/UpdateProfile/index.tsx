@@ -46,8 +46,9 @@ export const UpdateProfile = () => {
     handleSubmit,
     control,
     formState: { errors },
+    register
   } = useForm({
-    resolver: yupResolver(UpdateProfileFormSchema),
+    resolver: yupResolver(UpdateProfileFormSchema)
   });
 
   const handleUpdateForm = (values) => {
@@ -133,13 +134,13 @@ export const UpdateProfile = () => {
               <S.AddressTextContainer>
                 <h2>Endereço:</h2>
               </S.AddressTextContainer>
-              <Input
+              {/* <Input
                 control={control}
                 error={errors.city}
                 name="city"
                 placeholder="Digite sua cidade"
                 icon={FiMapPin}
-              />
+              /> */}
               <Input
                 control={control}
                 error={errors.district}
