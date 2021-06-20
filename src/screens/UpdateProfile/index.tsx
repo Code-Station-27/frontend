@@ -1,26 +1,17 @@
-import * as S from "./styles";
-
+import { yupResolver } from "@hookform/resolvers/yup";
 import Image from "next/image";
-import { Input } from "../../components/Input";
-
+import { ChangeEvent, useCallback } from "react";
+import { useForm } from "react-hook-form";
 import {
-  FiLock,
-  FiMapPin,
-  FiUser,
-  FiMail,
-  FiPhone,
-  FiCamera,
+  FiCamera, FiLock, FiMail, FiMapPin, FiPhone, FiUser
 } from "react-icons/fi";
-import { useAuth } from "../../contexts/AuthContext";
+import { useTheme } from "styled-components";
+import * as Yup from "yup";
 import { Button } from "../../components/Button";
 import { Header } from "../../components/Header";
-
-import { useTheme } from "styled-components";
-
-import { useForm, SubmitHandler } from "react-hook-form";
-import * as Yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { ChangeEvent, useCallback } from "react";
+import { Input } from "../../components/Input";
+import { useAuth } from "../../contexts/AuthContext";
+import * as S from "./styles";
 
 export const UpdateProfile = () => {
   const { colors } = useTheme();
