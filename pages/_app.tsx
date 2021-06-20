@@ -1,5 +1,4 @@
-import { createGlobalStyle, ThemeProvider } from 'styled-components'
-import Modal from 'react-modal'
+import { ThemeProvider } from 'styled-components'
 
 import { AuthProvider } from '../src/contexts/AuthContext'
 
@@ -7,6 +6,7 @@ import GlobalStyle from '../src/styles/global'
 
 import dark from '../src/styles/themes/dark'
 import light from '../src/styles/themes/light'
+
 
 export default function App({ Component, pageProps }) {
   return (
@@ -20,3 +20,4 @@ export default function App({ Component, pageProps }) {
     </>
   )
 }
+
