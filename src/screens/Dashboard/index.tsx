@@ -123,21 +123,30 @@ export const Dashboard = () => {
                   icon={FiSearch}
                 /> */}
             </S.ContentSearch>
-            <S.ContentPersonals>
-              {trainers.map((trainer) => (
-                <Link key={trainer.id} href={`/trainer/${trainer.user.id}`}>
-                  <a>
-                    <PersonalCard
-                      rating={5}
-                      name={trainer.user.name}
-                      description={
-                        "Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
-                      }
-                    />
-                  </a>
-                </Link>
-              ))}
-            </S.ContentPersonals>
+            {trainers.length === 0 ? (
+              <S.InfoContainer>
+                <h1>
+                  Ops! Parece que não temos nenhum personal em sua cidade.
+                </h1>
+                <p>Volta mais tarde para verificar se há algum personal.</p>
+              </S.InfoContainer>
+            ) : (
+              <S.ContentPersonals>
+                {trainers.map((trainer) => (
+                  <Link key={trainer.id} href={`/trainer/${trainer.user.id}`}>
+                    <a>
+                      <PersonalCard
+                        rating={5}
+                        name={trainer.user.name}
+                        description={
+                          "Sou um profissional que atua desde 2008 na área da musculação. Atuei com grandes celebridades como: jogadores de futebol"
+                        }
+                      />
+                    </a>
+                  </Link>
+                ))}
+              </S.ContentPersonals>
+            )}
           </S.Main>
         </S.Content>
       </S.Container>

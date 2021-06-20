@@ -78,6 +78,22 @@ export const ContentPersonals = styled.div`
   }
 `
 
+export const InfoContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+
+  h1 {
+    font-size: 28px;
+  }
+  p{
+    margin-top: 20px;
+  }
+`
+
 export const Aside = styled.aside`
   min-width: 300px;
   padding: 24px;
