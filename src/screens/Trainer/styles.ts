@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const  Container = styled.div`
+export const Container = styled.div`
     min-height: 100vh;
     width: 100vw;
     display: flex;
@@ -14,6 +14,27 @@ export const Content = styled.div`
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+`
+
+export const ContainerIcons = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+`
+
+export const ModalContent = styled.div`
+    h1 {
+        margin: 20px 0px;
+    }
+
+    p {
+        font-size: 24px;
+        margin: 40px 0px;
+    }
+
+    button {
+        margin: 20px 0px;
+    }
 `
 
 export const UserInfo = styled.div`
