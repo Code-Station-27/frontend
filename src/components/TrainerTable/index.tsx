@@ -1,63 +1,50 @@
 import { useState } from 'react'
 import { useViewport } from '../../hooks/useViewport'
+import { hours } from '../../utils/hours'
+import { weekdays } from '../../utils/weekdays'
 import { TableItem } from '../TableItem'
 import { TrainerTableItem } from '../TrainerTableItem'
 import * as S from './styles'
 
-export const TrainerTable = () => {
+interface Hour {
+    name: string,
+    address: string
+  }
+  
+  interface Day {
+    hours: (Hour | null)[];
+  }
+
+  interface TrainerTableProps {
+      days: Day[]
+  }
+
+export const TrainerTable: React.FC<TrainerTableProps> = ({days}) => {
     const { width } = useViewport()
 
     const [selectedDay, setSelectedDay] = useState(0)
-
-    const weekdays = [
-        {
-            longName: 'Domingo',
-            shortName: 'D'
-        },
-        {
-            longName: 'Segunda',
-            shortName: 'S'
-        },
-        {
-            longName: 'Terça',
-            shortName: 'T'
-        },
-        {
-            longName: 'Quarta',
-            shortName: 'Q'
-        },
-        {
-            longName: 'Quinta',
-            shortName: 'Q'
-        },
-        {
-            longName: 'Sexta',
-            shortName: 'S'
-        },
-        {
-            longName: 'Sábado',
-            shortName: 'S'
-        }
-    ]
 
     return width > 900 ? (
         <S.Container>
             <S.Header>
                 <strong></strong>
-                <strong>Domingo</strong>
-                <strong>Segunda</strong>
-                <strong>Terça</strong>
-                <strong>Quarta</strong>
-                <strong>Quinta</strong>
-                <strong>Sexta</strong>
-                <strong>Sábado</strong>
+                {weekdays.map((day) => (
+                    <strong key={day.longName}>{day.longName}</strong>
+                ))}
             </S.Header>
             <S.Body>
-                <strong>7:00 - 7:45</strong> <TrainerTableItem/> <div/> <TrainerTableItem/> <TrainerTableItem/> <div/> <TrainerTableItem/> <TrainerTableItem/>
-                <strong>8:00 - 8:45</strong> <TrainerTableItem/> <TrainerTableItem/> <TrainerTableItem/> <TrainerTableItem/> <div/> <div/> <TrainerTableItem/>
-                <strong>9:00 - 9:45</strong> <TrainerTableItem/> <div/> <TrainerTableItem/> <div/> <div/> <TrainerTableItem/> <TrainerTableItem/>
-                <strong>10:00 - 10:45</strong> <div/> <TrainerTableItem/> <div/> <TrainerTableItem/> <TrainerTableItem/> <div/> <div/>
-                <strong>11:00 - 11:45</strong> <div/> <TrainerTableItem/> <div/> <TrainerTableItem/> <div/> <TrainerTableItem/> <TrainerTableItem/>
+            {hours.map((hour, hourindex) => (
+          <>
+            <strong key={hour}>{hour}</strong>
+            {days.map((day, dayIndex) => {
+              return day.hours[hourindex] ? (
+                <TrainerTableItem/>
+              ) : (
+                <div />
+              );
+            })}
+          </>
+        ))}
             </S.Body>
         </S.Container>
     ) : (
@@ -76,11 +63,16 @@ export const TrainerTable = () => {
                 
             </S.Header>
             <S.Body>
-                <strong>7:00 - 7:45</strong> <TrainerTableItem/> 
-                <strong>8:00 - 8:45</strong> <TrainerTableItem/> 
-                <strong>9:00 - 9:45</strong> <TrainerTableItem/> 
-                <strong>10:00 - 10:45</strong> <TrainerTableItem/> 
-                <strong>11:00 - 11:45</strong> <TrainerTableItem/> 
+            {hours.map((hour, hourindex) => (
+          <>
+            <strong key={hour}>{hour}</strong>
+            {days[selectedDay].hours[hourindex] ? (
+              <TrainerTableItem/>
+            ) : (
+              <div />
+            )}
+          </>
+        ))}
             </S.Body>
         </S.Container>
     )
