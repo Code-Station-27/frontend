@@ -27,7 +27,7 @@ yarn dev
 ```
 
 
-## Authors
+## Autores
 
 - [@FilipePfluck](https://github.com/FilipePfluck)
 - [@benjamim015](https://github.com/benjamim015)
@@ -37,6 +37,11 @@ yarn dev
 
 
   
-## Contributing
+## Contribuição
 
-Contributions are always welcome!
+Contribuições são sempre bem-vindas!
+
+## :book: Licença
+ Feito em 2021 para o Code/Station Hackaton.
+ 
+ Dê uma :star: se esse projeto te ajudou!
