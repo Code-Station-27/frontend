@@ -173,16 +173,15 @@ export const Trainer = ({ id }) => {
         hour: hourIndex,
       })
       .then((res) => {
-        console.log(res.data);
+        setModalOpen(false);
       })
-      .catch((err) => console.log('err:', err));
+      .catch((err) => console.log("err:", err));
   };
 
   const getTrainingOfPersonal = async () => {
     await api
       .get(`/trainings?personal_id=b599802a-1bea-4e6e-9794-637981c660bd`)
       .then((res) => {
-        console.log()
         setTrainerData(res.data);
       })
       .catch((err) => console.log(err));
@@ -213,8 +212,11 @@ export const Trainer = ({ id }) => {
           </div>
         </S.UserInfo>
 
-        <Table onItemClick={handleClickItem} days={days} trainerData={trainerData} />
-
+        <Table
+          onItemClick={handleClickItem}
+          days={days}
+          trainerData={trainerData}
+        />
       </S.Content>
 
       <GenericModal ariaHideApp={true} isOpen={modalOpen}>
