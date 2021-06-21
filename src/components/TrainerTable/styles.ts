@@ -51,6 +51,10 @@ export const Body = styled.div`
     gap: 16px;
 
     strong{
+        height: 80px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         margin: auto 0;
     }
 

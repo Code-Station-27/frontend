@@ -11,13 +11,13 @@ interface Hour {
     address: string
   }
   
-  interface Day {
-    hours: (Hour | null)[];
-  }
+interface Day {
+  hours: (Hour | null)[];
+}
 
-  interface TrainerTableProps {
-      days: Day[]
-  }
+interface TrainerTableProps {
+  days: Day[]
+}
 
 export const TrainerTable: React.FC<TrainerTableProps> = ({days}) => {
     const { width } = useViewport()
@@ -37,8 +37,11 @@ export const TrainerTable: React.FC<TrainerTableProps> = ({days}) => {
           <>
             <strong key={hour}>{hour}</strong>
             {days.map((day, dayIndex) => {
-              return day.hours[hourindex] ? (
-                <TrainerTableItem/>
+              return !!day.hours[hourindex] ? (
+                <TrainerTableItem 
+                  name={'Filipe'}
+                  address={'teste'}
+                />
               ) : (
                 <div />
               );
@@ -64,14 +67,17 @@ export const TrainerTable: React.FC<TrainerTableProps> = ({days}) => {
             </S.Header>
             <S.Body>
             {hours.map((hour, hourindex) => (
-          <>
-            <strong key={hour}>{hour}</strong>
-            {days[selectedDay].hours[hourindex] ? (
-              <TrainerTableItem/>
-            ) : (
-              <div />
-            )}
-          </>
+            <>
+              <strong key={hour}>{hour}</strong>
+              {days[selectedDay].hours[hourindex] ? (
+                <TrainerTableItem 
+                  name={'Filipe'}
+                  address={'teste'}
+                />
+              ) : (
+                <div />
+              )}
+            </>
         ))}
             </S.Body>
         </S.Container>

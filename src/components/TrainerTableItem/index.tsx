@@ -1,10 +1,15 @@
 import * as S from './styles'
 
-export const TrainerTableItem = () => {
+interface TrainerTableItemProps {
+    name: string,
+    address: string
+}
+
+export const TrainerTableItem = ({name, address}) => {
     return(
         <S.Container>
-                <strong>Filipe Pfluck</strong>
-                <p>Bairro, rua, número</p>
+                <strong>{name}</strong>
+                <p>{address}</p>
         </S.Container>
     )
 }

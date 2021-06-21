@@ -102,27 +102,29 @@ export const Dashboard = () => {
   return (
     <>
       <Header />
-        <S.Container>
-          <S.Content>
-            <S.Aside>
-              <span>Meus agendamentos</span>
-              {Object.keys(myLessons).map((key, index) => (
-                <MyTrainersCard
-                  name={myLessons[key].name}
-                  lessons={myLessons[key].lessons}
-                />
-              ))}
-            </S.Aside>
-            <S.Main>
-              <S.ContentSearch>
-                <span>Buscar personal na minha cidade</span>
-                {/* <Input 
-                  name="input-personal" 
-                  type="text" 
-                  placeholder="Digite o nome do personal" 
-                  icon={FiSearch}
-                /> */}
-              </S.ContentSearch>
+      <S.Container>
+        <S.Content>
+          <S.Aside>
+            <span>Meus agendamentos</span>
+            {Object.keys(myLessons).map((key, index) => (
+              <MyTrainersCard
+                name={myLessons[key].name}
+                lessons={myLessons[key].lessons}
+              />
+            ))}
+          </S.Aside>
+          <S.Main>
+            <S.ContentSearch>
+              <span>Buscar personal na minha cidade</span>
+            </S.ContentSearch>
+            {trainers.length === 0 ? (
+              <S.InfoContainer>
+                <h1>
+                  Ops! Parece que não temos nenhum personal em sua cidade.
+                </h1>
+                <p>Volte mais tarde para verificar se há algum personal.</p>
+              </S.InfoContainer>
+            ) : (
               <S.ContentPersonals>
                 {trainers.map((trainer) => (
                   <Link key={trainer.id} href={`/trainer/${trainer.user.id}`}>
@@ -138,9 +140,10 @@ export const Dashboard = () => {
                   </Link>
                 ))}
               </S.ContentPersonals>
-            </S.Main>
-          </S.Content>
-        </S.Container>
+            )}
+          </S.Main>
+        </S.Content>
+      </S.Container>
     </>
   );
 };
