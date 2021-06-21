@@ -16,17 +16,13 @@ interface Day {
 interface TableProps {
   days: Day[];
   onItemClick: ({ weekday, hour, weekdayIndex, hourIndex }) => void;
-  trainerData: [];
 }
 
 export const Table: React.FC<TableProps> = ({
   days,
   onItemClick,
-  trainerData,
 }) => {
   const { width } = useViewport();
-
-  console.log(trainerData);
 
   const [selectedDay, setSelectedDay] = useState(0);
 

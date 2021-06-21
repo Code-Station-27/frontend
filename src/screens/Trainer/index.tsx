@@ -4,6 +4,7 @@ import { Button } from "../../components/Button";
 import { GenericModal } from "../../components/GenericModal";
 import { Header } from "../../components/Header";
 import { Table } from "../../components/Table";
+import { useAuth } from "../../contexts/AuthContext";
 import { api } from "../../services/api";
 import * as S from "./styles";
 
@@ -14,7 +15,11 @@ interface handleClickItemProps {
   weekdayIndex: number;
 }
 
-export const Trainer = ({ id }) => {
+interface TrainerProps{
+  id: string
+}
+
+export const Trainer: React.FC<TrainerProps> = ({ id }) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   const [trainerData, setTrainerData] = useState(null);
@@ -165,6 +170,8 @@ export const Trainer = ({ id }) => {
     handleOpenModal();
   };
 
+  const { user } = useAuth()
+
   const handleCreateTraining = async () => {
     await api
       .post("/trainings", {
@@ -178,18 +185,17 @@ export const Trainer = ({ id }) => {
       .catch((err) => console.log("err:", err));
   };
 
-  const getTrainingOfPersonal = async () => {
-    await api
-      .get(`/trainings?personal_id=b599802a-1bea-4e6e-9794-637981c660bd`)
-      .then((res) => {
-        setTrainerData(res.data);
-      })
-      .catch((err) => console.log(err));
-  };
+  useEffect(()=>{
+    api.get(`/personal/${id}`).then(response => {
+      console.log('response',response.data)
+      console.log(id)
+      setTrainerData(response.data)
+    })
+  },[])
 
-  useEffect(() => {
-    getTrainingOfPersonal();
-  }, []);
+  useEffect(()=>{
+    console.log('trainerData',trainerData)
+  },[trainerData])
 
   return (
     <S.Container>
@@ -198,11 +204,11 @@ export const Trainer = ({ id }) => {
         <S.UserInfo>
           <header>
             <div />
-            <h1>Nome</h1>
+            <h1>{trainerData && trainerData.name}</h1>
           </header>
           <div>
-            <p>Preço: R$100,00</p>
-            <p>Número: 11 000000000</p>
+            <p>Preço: R${trainerData && trainerData.price}</p>
+            <p>Número: {trainerData && trainerData.phone}</p>
           </div>
           <div>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita,
@@ -215,7 +221,6 @@ export const Trainer = ({ id }) => {
         <Table
           onItemClick={handleClickItem}
           days={days}
-          trainerData={trainerData}
         />
       </S.Content>
 
