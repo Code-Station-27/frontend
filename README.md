@@ -4,14 +4,14 @@ Um webapp que te ajuda a manter sua saúde!
 
 
 
-# Tecnologias
+# :computer: Tecnologias
 This project was made using the follow technologies:
 
 * [Typescript](https://www.typescriptlang.org/)      
 * [ReactJS](https://reactjs.org/)      
 * [NextJS](https://nextjs.org/)     
 
-# Como rodar
+# :rocket: Como rodar
 
 ```javascript
 git clone https://github.com/Code-Station-27/frontend
