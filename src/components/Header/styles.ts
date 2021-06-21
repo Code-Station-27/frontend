@@ -53,12 +53,15 @@ export const UserActions = styled.div`
     }
   }
 
+  a{
+    margin-left: 16px;
+  }
+
   img {
     background-size: 52px 52px;
     border: 0;
     border-radius: 50%;
     display: block;
-    margin-left: 16px;
     position: relative;
     height: 52px;
     width: 52px;

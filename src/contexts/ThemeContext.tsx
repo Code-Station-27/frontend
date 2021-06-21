@@ -17,12 +17,12 @@ export const ThemeContext = createContext({} as ThemeContextData)
 export const ThemeProvider:React.FC = ({children}) => {
 
     const [theme, setTheme] = useState<DefaultTheme>(()=>{
-        const { 'perfit.theme': storagedTheme }= parseCookies()
+        /* const { 'perfit.theme': storagedTheme }= parseCookies()
 
         if(storagedTheme) {
             console.log('initial state', JSON.parse(storagedTheme))
             return JSON.parse(storagedTheme)
-        }
+        } */
 
         return dark
     })
@@ -31,13 +31,13 @@ export const ThemeProvider:React.FC = ({children}) => {
         setTheme(state => state.title === 'dark' ? light : dark)
     },[])
 
-    useEffect(()=>{
+    /* useEffect(()=>{
         console.log('useEffect',theme)
         setCookie(undefined, 'perfit.theme', JSON.stringify(theme), {
             maxAge: 60 * 60 * 24 * 30, // 30 days
             path: '/'
         })
-    },[theme])
+    },[theme]) */
 
     return(
         <StyledProvider theme={theme as DefaultTheme}>

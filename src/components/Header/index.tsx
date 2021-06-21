@@ -35,14 +35,14 @@ export const Header = ({ shouldGoBack }: HeaderProps) => {
       </S.ContainerLogo>
 
       <S.UserActions>
-        {/* <Switch
+        <Switch
           onChange={()=>{toggleTheme()}}
           checked={theme.title === 'light' ? true : false}
           checkedIcon={false}
           uncheckedIcon={false}
-          offColor="#3E3B47"
-          onColor="#FF9000"
-        /> */}
+          offColor={theme.colors.shape}
+          onColor={theme.colors.green}
+        />
         <Link href="/updateProfile">
           <a>
             <Image
