@@ -11,13 +11,13 @@ interface Hour {
     address: string
   }
   
-  interface Day {
-    hours: (Hour | null)[];
-  }
+interface Day {
+  hours: (Hour | null)[];
+}
 
-  interface TrainerTableProps {
-      days: Day[]
-  }
+interface TrainerTableProps {
+  days: Day[]
+}
 
 export const TrainerTable: React.FC<TrainerTableProps> = ({days}) => {
     const { width } = useViewport()
